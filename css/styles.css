@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Poiret+One&display=swap');
+
+:root {
+  --primary: #3B82F6;
+  --bg: #0F172A;
+  --card: #1E293B;
+  --text: #F8FAFC;
+}
+
+body{
+  margin: 0;
+  background: linear-gradient(to bottom, #0F172A, #1E293B)
+}
+
+#top-homepage{
+  display: flex;
+  align-items: center;
+}
+
+.logo{
+  font-weight: 700;
+  font-size: 32px;
+  color: #227198;
+  font-family: "Funnel Display", sans-serif;
+
+  transition: all 1s ease;
+}
+
+.logo:hover{
+  font-weight: 800;
+  font-size: 40px;
+  color: #68cbec;
+
+  text-shadow:
+    0 0 5px #68cbec,
+    0 0 10px #68cbec,
+    0 0 20px #68cbec,
+    0 0 40px #68cbec;
+}
+
+.nav-links a {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  color: #4c83a2;
+}
+
+.nav-links a:hover{
+  color: #a6cedc;
+  text-shadow: 2px 2px 5px #7abfda;
+}
+
+#hero{
+  text-align: center;
+  padding: 80px 20px 80px;
+}
