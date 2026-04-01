@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Poiret+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
 
 :root {
   --primary: #3B82F6;
@@ -9,18 +10,21 @@
 
 body{
   margin: 0;
-  background: linear-gradient(to bottom, #0F172A, #1E293B)
+  background-image: url("../images/wallpaper.jpg");
 }
 
 #top-homepage{
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 20px 60px;
+  background: transparent;
 }
 
 .logo{
   font-weight: 700;
   font-size: 40px;
-  color: #227198;
+  color: #c7f8f3;
   font-family: "Funnel Display", sans-serif;
 
   transition: all 1s ease;
@@ -28,23 +32,26 @@ body{
 
 .logo:hover{
   font-weight: 800;
-  font-size: 45px;
-  color: #68cbec;
+  font-size: 43px;
+  color: #91f6df;
 
   text-shadow:
-    0 0 5px #68cbec,
-    0 0 10px #68cbec,
-    0 0 20px #68cbec,
-    0 0 40px #68cbec;
+    0 0 5px #91f6df,
+    0 0 10px #91f6df,
+    0 0 20px #91f6df,
 }
 
-.nav-links a {
+.nav-links{
   list-style: none;
   display: flex;
   gap: 30px;
-  color: #4c83a2;
-  font-family: "Poiret One", sans-serif;
-  font-size: 35px;
+  color: #5dc3d5;
+  font-family: "Funnel Display", sans-serif;
+}
+
+.nav-links a {
+  font-size: 20px;
+  text-decoration: none;
 }
 
 .nav-links a:hover{
@@ -55,4 +62,37 @@ body{
 #hero{
   text-align: center;
   padding: 80px 20px 80px;
+}
+
+#hero h2{
+  font-size: 55px;
+  font-weight: 800;
+  margin-bottom: 15px;
+  font-family: "Funnel Display", sans-serif;
+  color: #66fcf1;
+}
+
+#hero p{
+  color: #c5c6c7;
+  font-size: 30px;
+  margin-bottom: 40px;
+  font-family: "Poiret One", sans-serif;
+}
+
+.btn-group{
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-family: "Funnel Display", sans-serif;
+}
+
+#start-button{
+  text-decoration: none;
+  font-size: 30px;
+  padding: 15px 30px;
+  font-weight: 600;
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 300;
+  color: #66fcf1;
+  border: 1px Solid #c5c6c7;
 }
