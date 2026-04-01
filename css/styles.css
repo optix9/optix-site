@@ -1,13 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Poiret+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
 
-:root {
-  --primary: #3B82F6;
-  --bg: #0F172A;
-  --card: #1E293B;
-  --text: #F8FAFC;
-}
-
 body{
   margin: 0;
   background-image: url("../images/wallpaper.jpg");
@@ -45,13 +38,13 @@ body{
   list-style: none;
   display: flex;
   gap: 30px;
-  color: #5dc3d5;
   font-family: "Funnel Display", sans-serif;
 }
 
 .nav-links a {
   font-size: 20px;
   text-decoration: none;
+  color: #72b2f2;
 }
 
 .nav-links a:hover{
@@ -67,7 +60,7 @@ body{
 #hero h2{
   font-size: 55px;
   font-weight: 800;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
   font-family: "Funnel Display", sans-serif;
   color: #66fcf1;
 }
@@ -88,11 +81,20 @@ body{
 
 #start-button{
   text-decoration: none;
-  font-size: 30px;
-  padding: 15px 30px;
+  font-size: 23px;
+  padding: 10px 20px;
   font-weight: 600;
   font-family: "Rajdhani", sans-serif;
   font-weight: 300;
   color: #66fcf1;
   border: 1px Solid #c5c6c7;
+  margin-top: 50px;
+  box-shadow: 1px 1px 3px #7abfda;
+}
+
+#start-button:hover{
+  color: #84acc0;
+  font-size: 26px;
+  transition: 0.3s ease;
+  box-shadow: 2px 2px 5px #91f6df;
 }
