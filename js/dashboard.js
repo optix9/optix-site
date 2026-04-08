@@ -1,8 +1,7 @@
-$(document).ready(function(){
-  let name = localStorage.getItem(username);
+$(function () {
+  let name = localStorage.getItem("username");
 
-  if(name){
-    $("#welcome-text").text("Welcome" + name);
+  if (name) {
+    $("#welcome-text").text("Welcome " + name);
   }
-
 });
