@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Poiret+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+
+#dashboard{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  padding: 16px;
+}
+
+body{
+  background-color: #101221;
+}
+
+.welcome1{
+  border-radius: 15px;
+  padding: 20px;
+  background-color: #202d4e;
+
+  width: 90%;
+  max-width: 350px;
+
+  height: 90%;
+  max-height: 65px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px double #51f1f1;
+  box-shadow: 0 0 5px #00ffff;
+}
+
+#welcome-text{
+  font-family: "Funnel Display", sans-serif;
+  font-weight: 700;
+  color: #45e9dc;
+  font-size: 40px;
+  text-shadow:
+    0 0 1px #a4e3e3,
+    0 0 1px #a4e3e3,
+    0 0 2px #a4e3e3,
+    0 0 3px #a4e3e3;
+}
