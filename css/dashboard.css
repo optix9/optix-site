@@ -15,17 +15,17 @@ body{
 
 #dashboard-container{
   display: grid;
-  grid-template-columns: 220px 1fr;
+  grid-template-columns: 350px 1fr;
   height: 100vh;
 }
 
 #sidebar{
-  background-color: #202e43;
+ /* background-color: #202e43;*/
   padding: 20px;
   font-family: "Funnel Display", sans-serif;
   font-weight: 700;
-  border-right: 2px Solid #144683;
-  max-width: 250px;
+  border-right: 2px Solid #284466;
+  max-width: 275px;
   width: 90%;
 }
 
@@ -62,7 +62,7 @@ body{
 }
 
 #sidebar #current{
-  background-color: #304662;
+  background-color: #263445;
   border-radius: 10px;
   border: 2px Solid #336e70;
 }
@@ -72,32 +72,87 @@ body{
   flex-direction: column;
 }
 
-/*.header{
+.header-div{
   border-radius: 15px;
   padding: 20px;
   background-color: #202d4e;
 
   width: 90%;
-  max-width: 350px;
+  max-width: 500px;
 
   height: 90%;
-  max-height: 65px; 
+  max-height: 60px; 
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px double #51f1f1;
-  box-shadow: 0 0 5px #00ffff;
+  flex-direction: column;
+
+  margin-left: 4%;
+  margin-top: 5vh;
 }
 
 #welcome-text{
   font-family: "Funnel Display", sans-serif;
-  font-weight: 700;
-  color: #45e9dc;
-  font-size: 40px;
-  text-shadow:
-    0 0 1px #a4e3e3,
-    0 0 1px #a4e3e3,
-    0 0 2px #a4e3e3,
-    0 0 3px #a4e3e3;
-}*/
+  font-weight: 500;
+  color: #618da3;
+  font-size: 30px;
+  margin-bottom: 0;
+}
 
+.header-div p{
+  font-family: "Funnel Display", sans-serif;
+  font-weight: 300;
+  color: #ffffff;
+  font-size: 20px;
+  margin-left: 20px;
+}
+
+.p-text-header{
+  display: flex;
+  flex-direction: row;
+}
+
+.main-center{
+  border-radius: 15px;
+  padding: 20px;
+  border:2px Solid #284466;;
+
+  width: 90%;
+  max-width: 600px;
+
+  height: 90%;
+  max-height: 800px; 
+  display: flex;
+  flex-direction: column;
+
+  margin-left: 4%;
+  margin-top: 8vh;
+}
+
+.quiz-main h3{
+  font-family: "Funnel Display", sans-serif;
+  font-weight: 500;
+  color: #e7f4fa;
+  font-size: 30px;
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+
+#start-quiz-button{
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 500;
+  color: #ffffff;
+  background-color: #202d4e;
+  border: 2px Solid #284466;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 18px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#start-quiz-button:hover{
+  background-color: #273a50;
+  cursor: pointer;
+  transition: 0.3s ease;
+  font-size: 19.5px;
+}

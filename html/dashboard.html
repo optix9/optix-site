@@ -17,50 +17,66 @@
     <div id="sidebar">
       <h2>Optix</h2>
       <ul>
-        <li id="current">Dashboard</li>
-        <li>Start Quiz</li>
-        <li>History</li>
-        <li>Profile</li>
+        <li id="current">🏠Dashboard</li>
+        <li>📘Start Quiz</li>
+        <li>📜History</li>
+        <li>🏆Achievements</li>
+        <li>🪪Profile</li>
       </ul>
     </div>
 
     <div id="main-area">
 
-      <div class="header">
+      <div class="header-div">
         <h1 id="welcome-text">Welcome</h1>
-      </div>
-
-      <div class="cards">
-
-        <div class="card" id="card1"> <!-- card uno-->
-          <h3>Stats</h3>
-          <p>Rating: __</p>
-          <p>Quizzes Taken: __</p>
-          <p>Overall Accuracy: __</p>
+        
+        <div class="p-text-header">
+          <p id="xp-level">XP Level: __</p>
+          <p>Streak: __ days</p>
         </div>
 
-        <div class="card" id="card2"> <!-- card dos -->
+      </div>
+
+      <div class="main-center">
+
+        <div class="quiz-main">
           <h3>Start Quiz🚀</h3>
           <button id="start-quiz-button">Start</button>
         </div>
 
-        <div class="card" id="card3"> <!-- card tres-->
-          <h3>Recent Activity</h3>
-          <p>Algrebra - </p>
-          <p>Geometry - </p>
-          <p>Number Theory - </p>
-        </div>
+        <div class="info-main">
 
-        <div class="card" id="card4"> <!-- card cuatro -->
-          <h3>Recomendations</h3>
-          <p>Practice Algebra</p>
+          <div class="stats-main">
+            <h3>Stats</h3>
+            <p>Rating: __</p>
+            <p>Quizzes Taken: __</p>
+            <p>Overall Accuracy: __</p>
+          </div>
+
+          <div class="recent-activity-main"> 
+            <h3>Recent Activity</h3>
+            <p>Algrebra - </p>
+            <p>Geometry - </p>
+            <p>Number Theory - </p>
+          </div>
+
         </div>
 
       </div>
-    
+
     </div>
 
+    <div class="side-cards-container">
+
+      <div class="card" id="card4">
+        <h3>Recomendations</h3>
+        <p>Practice Algebra</p>
+      </div>
+
+    </div>
+    
   </div>
+
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="../js/dashboard.js"></script>
