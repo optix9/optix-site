@@ -67,6 +67,11 @@ body{
   border: 2px solid rgba(51,110,112,0.12);
 }
 
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
 #main-area{
   display: flex;
   flex-direction: column;

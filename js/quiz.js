@@ -17,6 +17,12 @@ function loadQuestion(){
   optionsEl.innerHTML = '';
   selectedAnswer = null;
   submitBtn.style.display = 'none';
+  document.getElementById("question-title").textContent = `Question ${currentIndex + 1}`;
+  document.getElementById("question-count").textContent = `${currentIndex + 1} of ${questions.length}`;
+
+  const progressFill = document.querySelector('.progress-fill');
+  const progressPercent = ((currentIndex) / questions.length) * 100;
+  progressFill.style.width = `${progressPercent}%`;
 
   q.options.forEach(option => {
     const btn = document.createElement('button');

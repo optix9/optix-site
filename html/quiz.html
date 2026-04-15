@@ -10,13 +10,29 @@
   </head>
 
   <body>
-    <h1>Algebra Quiz</h1>
 
+  <div id="top-page">
+    <h3 id="optix-logo">Optix</h3>
+
+
+    <div class="progress-bar">
+      <div class="progress-fill"></div>
+    </div>
+
+    <h2 id="question-count"></h2>
+
+    <button id="back-button" onclick="window.location.href = 'dashboard.html'">Back</button>
+  </div>
+
+  <div id="middle-page">
+    <h1 id="question-title">Question</h1>
     <h2 id="question"></h2>
 
     <div id="options"></div>
 
     <button id="submit-answer">Next</button>
+    
+  </div>
 
     <script type="module" src="../js/quiz.js"></script>
 
