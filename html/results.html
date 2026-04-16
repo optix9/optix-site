@@ -12,17 +12,28 @@
 
   <body>
 
+    <div id="top-page">
+      <h2 id="header">Optix</h2>
+    </div>
+
     <h1>Quiz Results</h1>
 
     <div id="results-container">
-      <h2>Your score:</h2>
-      <p id="score"></p>
-      
-  <!--<p id="accuracy"></p>
-      <p id="time-taken"></p>-->
+      <h4 id="message"></h4>
+
+      <div id="stats"></div>
+        <p id="total" class="stat">Total Questions: </p>
+        <h2 id="score" class="stat">Your score:</h2>
+        <p id="percentage" class="stat">Percentage: </p>
+        <p id="time" class="stat">Time: 1:45</p>
+      </div>
+
+      <button id="back-button" onclick="window.location.href = 'dashboard.html'">Back to Dashboard</button>
+
     </div>
 
     <script src="../js/results.js"></script>
+    <script src="../js/dashboard.js"></script>
 
   </body>
 

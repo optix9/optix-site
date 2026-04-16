@@ -1,0 +1,88 @@
+body{
+  background-image: url("../images/resultsbg.png");
+  background-size: cover;
+}
+
+#top-page{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 60px;
+  height: 10%;
+  background-color: transparent;
+}
+
+#header{
+  font-weight: 700;
+  font-size: 40px;
+  color: #c7f8f3;
+  font-family: "Funnel Display", sans-serif;
+
+  transition: all 0.4s ease;
+}
+
+#header:hover{
+  color: #91f6df;
+  font-size: 41px;
+
+  text-shadow:
+    0 0 3px #91f6df,
+    0 0 3px #91f6df,
+    0 0 6px #91f6df,
+}
+
+#results-container{
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #2a3e74;
+  border-radius: 12px;
+  padding: 20px 20px 40px;
+  width: 60%;
+  box-shadow: 0 6px 18px rgba(2,6,20,0.35);
+  height: 60%;
+}
+
+#message{
+  font-weight: 700;
+  font-size: 28px;
+  color: #e2e5e4;
+  font-family: "Funnel Display", sans-serif;
+  text-shadow:
+    0 0 3px #c7f8f3,
+    0 0 6px #c7f8f3,
+    0 0 7px #c7f8f3;
+}
+
+#stats{
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+.stat{
+  font-weight: 500;
+  font-size: 22px;
+  color: #a2dfcb;
+  font-family: "Funnel Display", sans-serif;
+  border-radius: 10px;
+  width: 10%;
+  padding: 10px;
+  background-color: #e2e6e8;
+}
+
+#back-button{
+  margin-top: 30px;
+  font-size: 18px;
+  font-family: "Funnel Display", sans-serif;
+  border-radius: 10px;
+  text-decoration: none;
+  padding: 10px 20px;
+  font-weight: 600;
+  color: #13242c;
+  border: 2px Solid #1b334b;
+  box-shadow: 2px 2px 3px #000000;
+  background-color: transparent;
+}

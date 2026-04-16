@@ -50,7 +50,24 @@ submitBtn.addEventListener('click', () => {
   if (currentIndex < questions.length){
     loadQuestion();
   } else {
-    localStorage.setItem('score', score);
+
+    const total = questions.length;
+    const percentage = Math.round((score / total) * 100);
+    
+    const resultData = {
+      score: score,
+      total: total,
+      percentage: percentage,
+      date: new Date().toLocaleString()
+    };
+
+    let history = JSON.parse(localStorage.getItem('quizHistory')) || [];
+
+    history.push(resultData);
+
+    localStorage.setItem('quizHistory', JSON.stringify(history));
+    localStorage.setItem('latestResult', JSON.stringify(resultData));
+
     window.location.href = '../html/results.html';
   }
 });
