@@ -1,6 +1,13 @@
 import { auth, db, authReady } from "./firebase.js";
-import { collection, addDoc, serverTimestamp } 
-from "https://www.gstatic.com/firebasejs/12.12.0/firebase-firestore.js";
+import {
+  collection,
+  addDoc,
+  serverTimestamp,
+  getDocs,
+  query,
+  orderBy,
+  limit,
+} from "https://www.gstatic.com/firebasejs/12.12.0/firebase-firestore.js";
 
 export async function saveQuizResult(result) {
   try {
@@ -21,4 +28,20 @@ export async function saveQuizResult(result) {
   } catch (error) {
     console.error("Failed to save quiz result to Firebase:", error);
   }
+}
+
+export async function getRecentResults() {
+  await authReady;
+
+  const user = auth.currentUser;
+  if (!user) return [];
+
+  const q = query(
+    collection(db, "users", user.uid, "attempts"),
+    orderBy("createdAt", "desc"),
+    limit(5)
+  );
+
+  const snapshot = await getDocs(q);
+  return snapshot.docs.map(doc => doc.data());
 }
