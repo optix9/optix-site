@@ -3,90 +3,132 @@
 
 #history-container{
   display: grid;
-  gap: 16px;
-  padding: 16px;
-  animation: fadeIn 0.8s ease-in-out;
+  gap: 30px;
+  width: 100%;
+  max-width: none;
+  margin: 12px 0 0 0;
+  padding: 0;
 }
 
 h1{
   font-family: "Funnel Display", sans-serif;
   font-weight: 700;
   color: #6fe7e0;
-  text-shadow: 0 1px 0 #00000066;
-  margin: 0 0 12px 0;
+  text-shadow: 2px 3px 5px #4d86d666;
+  margin: 0 0 6px 0;
 }
 
 #top-container{
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr) minmax(420px, 2fr);
+  gap: 24px;
+  align-items: start;
+}
+
+#topleft-history,
+#topright-history,
+#recent-quizzes-history,
+#graph{
+  padding: 24px;
+  background: linear-gradient(180deg, rgba(19,32,53,0.92) 0%, rgba(25,44,70,0.85) 100%);
+  border-radius: 20px;
+  border: 1px solid rgba(80,185,205,0.18);
+  box-shadow: 0 18px 32px rgba(0,0,0,0.18);
 }
 
 #topleft-history{
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  gap: 14px;
 }
 
 #topleft-history h3{
   font-family: "Funnel Display", sans-serif;
   font-weight: 500;
-  color: #9ccbd3;
+  color: #d6ecf1;
   font-size: 18px;
+  margin: 0;
 }
 
 #topright-history{
-  display: flex;
-  gap: 8px;
+  display: grid;
+  gap: 20px;
 }
 
-#topright-histroy h3{
+#topright-history h3{
   font-family: "Funnel Display", sans-serif;
-  font-weight: 500;
-  color: #9ccbd3;
-  font-size: 18px;
+  font-weight: 600;
+  color: #a9d9e3;
+  font-size: 20px;
+  margin: 0;
 }
 
 #history-table{
   width: 100%;
   border-collapse: collapse;
-  font-family: "Poiret One", sans-serif;
-  color: #9ccbd3;
+  font-family: "Funnel Display", sans-serif;
+  color: #d4f1f7;
+  background: rgba(8,14,28,0.7);
+  border-radius: 16px;
+  overflow: hidden;
 }
 
 #history-table th, #history-table td{
-  border: 1px solid #28446633;
-  padding: 12px;
+  border: 1px solid rgba(40,68,101,0.25);
+  padding: 14px;
   text-align: left;
 }
 
 #history-table th{
-  background-color: #90c8d4;
+  background-color: #599ccb;
   color: #232a40;
   font-weight: 600;
 }
 
 #history-table td{
-  background-color: #28446633;
-  color: #9ccbd3;
+  background-color: rgba(40,68,101,0.4);
+  color: #e6f5fb;
   font-weight: 400;
+  font-family: "Poiret One", sans-serif;
 }
 
 #show-more{
   font-family: "Funnel Display", sans-serif;
-  font-weight: 450;
+  font-weight: 600;
   color: #0e214b;
-  background-color: #82aeca;
-  background: none;
+  background: #82aeca;
   border: none;
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 14px;
+  padding: 12px 20px;
+  width: fit-content;
+  justify-self: start;
+  margin-top: 8px;
 }
 
 #bottom-container{
-  display: flex;
-  justify-content: center;
-  padding: 16px;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
 }
 
+#recent-quizzes-history h3,
+#graph h3{
+  font-family: "Funnel Display", sans-serif;
+  font-weight: 600;
+  color: #9ccbd3;
+  margin: 0 0 16px 0;
+}
+
+#recent-quizzes-history p,
+#graph p{
+  font-family: "Poiret One", sans-serif;
+  color: #d4f1f7;
+  margin: 8px 0;
+}
+
+#show-more:hover{
+  background: #7aabb5;
+  color: #0b1a3a;
+  box-shadow: 0 2px 6px rgba(168,217,227,0.4);
+  transform: translateY(-2px);
+}

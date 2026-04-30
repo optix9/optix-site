@@ -1,5 +1,4 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-app.js";
-import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -14,6 +13,4 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export { app };
-export const auth = getAuth(app);
 export const db = getFirestore(app);
-export const authReady = signInAnonymously(auth);

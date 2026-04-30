@@ -36,7 +36,7 @@
 
         <div class="p-text-header">
           <p class="badge" id="xp-level">XP: __</p>
-          <p class="badge">Streak: __d</p>
+          <p class="badge" id="streakptag">Streak: __d</p>
         </div>
 
       </div>
@@ -45,7 +45,7 @@
 
         <div class="quiz-main">
           <h3>Start Quiz🚀</h3>
-          <button id="start-quiz-button">Start</button>
+          <button id="start-quiz-button" onclick="window.location.href='quiz.html'">Start</button>
         </div>
 
         <div class="info-main">
@@ -114,6 +114,73 @@
 
       </div>
 
+<!----------------------------------History Container-------------------------->
+
+      <div id="history-container">
+
+        <h1>History</h1>
+        
+        <div id="top-container">
+
+          <div id="topleft-history">
+            <h3 id="avgscore">Average Score: </h3>
+            <h3 id="bestscore">Best Score: </h3>
+            <h3 id="quizestaken">Quizzes Taken: </h3>
+            <h3 id="currentstreak">Current Streak:  </h3>
+          </div>
+
+          <div id="topright-history">
+            <h3>All Quizzes</h3>
+
+            <table id="history-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Topic</th>
+                  <th>Difficulty</th>
+                  <th>Score</th>
+                </tr>
+              </thead>
+              <tbody id="history-body">
+              <!-- JS inserts rows here -->
+              </tbody>
+            </table>
+
+            <button id="show-more">Show More</button>
+
+          </div>
+
+        </div>
+
+        <div id="bottom-container">
+          <div id="recent-quizzes-history">
+            <h3>Recent Quizzes</h3>
+
+            <div classs="quiz-card">
+
+            </div>
+
+            <!--ADD CARDS LIKE THIS USING JS-->
+
+           <!-- <div class="quiz-card">
+              <h3>Most Recent Quiz</h3>
+              <p>Topic: __</p>
+              <p>Difficulty: __</p>
+              <p>Score: __</p>
+              <p>Date: __ </p>
+            </div>  -->
+
+          </div>
+
+          <div id="graph">
+            <h3>Performance Graph</h3>
+            <canvas id="performance-chart"></canvas>
+          </div>
+
+        </div>
+
+      </div>
+
     </div>
 
     <div id="recos" class="change-class">
@@ -129,106 +196,50 @@
 
 
 
-  <!----------------------------------History Container-------------------------->
-
-  <div id="history-container">
-
-    <h1>History</h1>
-    
-    <div id="top-container">
-
-      <div id="topleft-history">
-        <h3>Average Score: </h3>
-        <h3>Best Score: </h3>
-        <h3>Quizzes Taken: </h3>
-        <h3>Current Streak:  </h3>
-      </div>
-
-      <div id="topright-history">
-        <h3>All Quizzes</h3>
-
-        <table id="history-table">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Topic</th>
-              <th>Difficulty</th>
-              <th>Score</th>
-            </tr>
-          </thead>
-          <tbody id="history-body">
-          <!-- JS inserts rows here -->
-          </tbody>
-        </table>
-
-        <button id="show-more">Show More</button>
-
-      </div>
-
-    </div>
-
-    <div id="bottom-container">
-      <div id="recent-quizzes-history">
-        <h3>Recent Quizzes</h3>
-
-        <!--ADD CARDS LIKE THIS USING JS-->
-
-       <!-- <div class="quiz-card">
-          <h3>Most Recent Quiz</h3>
-          <p>Topic: __</p>
-          <p>Difficulty: __</p>
-          <p>Score: __</p>
-          <p>Date: __ </p>
-        </div>  -->
-
-      </div>
-
-      <div id="graph">
-        <h3>Performance Graph</h3>
-        <!-- Placeholder for graph -->
-       <!-- <canvas id="performance-chart"></canvas> -->
-       <p>(Graph will be displayed here)</p>
-      </div>
-
-    </div>
-
-
-  </div>
-
    <!----------------------------------JAVASCRIPT------------------------------->
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0"></script>
   <script type="module" src="../js/dashboard.js"></script>
 
   <script>
+    const activeTabs = ["#dashboard-li", "#practice", "#history"];
+    const sectionMap = {
+      "#dashboard-li": ".change-class",
+      "#practice": "#practice-container",
+      "#history": "#history-container"
+    };
+
+    function setCurrentTab(tabId) {
+      activeTabs.forEach(id => $(id).removeClass("current"));
+      $(tabId).addClass("current");
+    }
+
+    function showSection(selector) {
+      const allSections = $(".change-class, #practice-container, #history-container");
+      allSections.filter(":visible").stop(true, true).fadeOut(180, () => {
+        $(selector).stop(true, true).fadeIn(220);
+      });
+    }
 
     $("#practice-container").hide();
     $("#history-container").hide();
     $(".change-class").show();
 
-
-    $("#practice").click(function () {
-      $(".change-class").fadeOut();
-      $("#practice-container").fadeIn();
-      $("#dashboard-li").removeClass("current");
-      $("#practice").addClass("current");
+    $("#practice").on("click", () => {
+      showSection(sectionMap["#practice"]);
+      setCurrentTab("#practice");
     });
 
-    $("#history").click(function () {
-      $(".change-class").fadeOut();
-      $("#history-container").fadeIn();
-      $("#dashboard-li").removeClass("current");
-      $("#history").addClass("current");
+    $("#history").on("click", () => {
+      showSection(sectionMap["#history"]);
+      setCurrentTab("#history");
     });
 
-    $("#dashboard-li").click(function () {
-      $(".change-class").fadeIn();
-      $("#practice-container").fadeOut();
-      $("#history-container").fadeOut();
-      $("#dashboard-li").addClass("current");
-      $("#practice").removeClass("current");
+    $("#dashboard-li").on("click", () => {
+      showSection(sectionMap["#dashboard-li"]);
+      setCurrentTab("#dashboard-li");
     });
-
   </script>
 
 </body>
