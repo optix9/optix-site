@@ -275,13 +275,15 @@ a{
  /*----------------------------------Practice Styles--------------------------*/
 
 #practice-container{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
   gap: 24px;
-  min-height: 100vh;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
   padding: 24px;
+  min-height: calc(100vh - 80px);
   animation: fadeInPrac 0.8s ease-in-out;
+  box-sizing: border-box;
 }
 
 @keyframes fadeInPrac {
@@ -294,52 +296,67 @@ a{
   font-weight: 700;
   color: #6fe7e0;
   font-size: 32px;
-  text-shadow: 0 1px 0 #00000066;
-  margin: 0 0 12px 0;
+  margin: 0;
 }
 
 #practice-container p{
   font-family: "Funnel Display", sans-serif;
   font-weight: 400;
   color: #a0c2c4;
-  font-size: 15px;
-  margin: 0 0 24px 0;
+  font-size: 16px;
+  margin: 0;
+}
+
+#practice-container > div{
+  background: #131f33;
+  border: 1px solid #2c3d5a;
+  border-radius: 24px;
+  padding: 24px;
+  display: grid;
+  gap: 18px;
 }
 
 .practice-topics, .difficulty, .length-practice{
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 12px;
+  gap: 16px;
+  align-items: stretch;
 }
 
 .topic-btn, .difficulty-btn, .length-btn{
   font-family: "Funnel Display", sans-serif;
   font-weight: 600;
-  font-size: 18px;
-  color: #232a40;
+  font-size: 16px;
+  color: #0b1a2e;
   background: #90c8d4;
   border: 0;
-  border-radius: 10px;
-  width: 200px;
-  text-align: center;
-  padding: 12px;
+  border-radius: 14px;
+  min-width: 140px;
+  padding: 14px 18px;
   cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.topic-btn:hover, .difficulty-btn:hover, .length-btn:hover{
+  background: #6bb8c8;
+  transform: translateY(-2px);
 }
 
 .prac-title{
   font-family: "Funnel Display", sans-serif;
   font-weight: 600;
   color: #75e2e7;
-  font-size: 24px;
-  margin: 0 0 12px 0;
+  font-size: 22px;
+  margin: 0;
 }
 
 .button-row{
   display: flex;
-  gap: 10px;
+  gap: 12px;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
 }
+
+
 
  /*----------------------------------Challenge Styles--------------------------*/

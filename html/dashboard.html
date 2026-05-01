@@ -83,7 +83,7 @@
             <button class="topic-btn">Algebra</button>
             <button class="topic-btn">Geometry</button>
             <button class="topic-btn">Number Theory</button>
-            <button class="topic-btn">Combinatorics</button>
+            <button class="topic-btn">Probability</button>
           </div>
 
         </div>
@@ -123,10 +123,14 @@
         <div id="top-container">
 
           <div id="topleft-history">
+            <h1>Overall Statistics</h1>
             <h3 id="avgscore">Average Score: </h3>
             <h3 id="bestscore">Best Score: </h3>
+            <h3 id="xp">XP: </h3>
+            <h3 id="hardesttopic">Hardest Topic: </h3>
             <h3 id="quizestaken">Quizzes Taken: </h3>
             <h3 id="currentstreak">Current Streak:  </h3>
+            <h3 id="longeststreak">Longest Streak:  </h3>
           </div>
 
           <div id="topright-history">
@@ -156,8 +160,20 @@
           <div id="recent-quizzes-history">
             <h3>Recent Quizzes</h3>
 
-            <div classs="quiz-card">
+            <div id="quiz-cards-layout">
 
+              <div class="quizc" id="quiz-card">
+
+              </div>
+
+              <div class="quizc" id="quiz-card-2">
+
+              </div>
+
+              <div class="quizc"  id="quiz-card-3">
+
+              </div>
+            
             </div>
 
             <!--ADD CARDS LIKE THIS USING JS-->
@@ -216,11 +232,23 @@
     }
 
     function showSection(selector) {
-      const allSections = $(".change-class, #practice-container, #history-container");
-      allSections.filter(":visible").stop(true, true).fadeOut(180, () => {
-        $(selector).stop(true, true).fadeIn(220);
-      });
-    }
+  const allSections = $(".change-class, #practice-container, #history-container");
+  const container = $("#dashboard-container");
+
+  if (selector === "#history-container") {
+    // Force the main dashboard grid to only have 2 columns instead of 3
+    container.css("grid-template-columns", "275px 1fr");
+    $("#recos").hide();
+  } else {
+    // Restore the 3-column layout (Sidebar | Main | Recommendations)
+    container.css("grid-template-columns", "275px 1fr 300px");
+    $("#recos").show();
+  }
+
+  allSections.filter(":visible").stop(true, true).fadeOut(180, () => {
+    $(selector).stop(true, true).fadeIn(220);
+  });
+}
 
     $("#practice-container").hide();
     $("#history-container").hide();

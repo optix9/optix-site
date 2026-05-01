@@ -1,15 +1,59 @@
-import questions from '../data/questions.js';
+import {
+  algebraQuestions,
+  geometryQuestions,
+  numberTheoryQuestions,
+  probabilityQuestions
+} from "../data/questions.js";
+
 import { saveQuizResult } from "./storage.js";
+
+const allQuestions = [
+  ...algebraQuestions,
+  ...geometryQuestions,
+  ...numberTheoryQuestions,
+  ...probabilityQuestions
+];
 
 let currentIndex = 0;
 let score = 0;
 let selectedAnswer = null;
+
+let selectedTopic = null;
+let selectedDifficulty = null;
+let selectedLength = null;
 
 const questionEl = document.getElementById('question');
 const optionsEl = document.getElementById('options');
 const submitBtn = document.getElementById('submit-answer');
 
 submitBtn.style.display = 'none';
+
+document.querySelectorAll(".topic-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    selectedTopic = btn.textContent;
+    console.log("Topic:", selectedTopic);
+  });
+});
+
+document.querySelectorAll(".difficulty-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    selectedDifficulty = btn.textContent;
+    console.log("Difficulty:", selectedDifficulty);
+  });
+});
+
+document.querySelectorAll(".length-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    selectedLength = parseInt(btn.textContent);
+    console.log("Length:", selectedLength);
+  });
+});
+
+function mapDifficulty(diff) {
+  if (diff === "Easy") return "1";
+  if (diff === "Medium") return "2";
+  if (diff === "Hard") return "3";
+}
 
 function loadQuestion(){
   const q = questions[currentIndex];

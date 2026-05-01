@@ -150,6 +150,29 @@ async function loadDashboard() {
     }
   });
 
+  //recent quizzes section history page
+
+  document.getElementById("quiz-card").innerHTML = `
+    <h1 style="font-family: 'Funnel Display', sans-serif; font-weight: 800; color: #abcdda; margin: 0 0 10px 0; font-size: 20px;">Most Recent Quiz</h1>
+    <p>Topic: ${results[0].topic}</p>
+    <p>Date: ${results[0].createdAt.toDate().toLocaleDateString()}</p>
+    <p>Score: ${results[0].percentage}%</p>
+  `;
+
+  document.getElementById("quiz-card-2").innerHTML = `
+    <h1 style="font-family: 'Funnel Display', sans-serif; font-weight: 800; color: #abcdda; margin: 0 0 10px 0; font-size: 18px;">Second Most Recent Quiz</h1>
+    <p>Topic: ${results[1] ? results[1].topic : "N/A"}</p>
+    <p>Date: ${results[1] ? results[1].createdAt.toDate().toLocaleDateString() : "N/A"}</p>
+    <p>Score: ${results[1] ? results[1].percentage + "%" : "N/A"}</p>
+  `;
+
+  document.getElementById("quiz-card-3").innerHTML = `
+    <h1 style="font-family: 'Funnel Display', sans-serif; font-weight: 800; color: #abcdda; margin: 0 0 10px 0; font-size: 18px;">Third Most Recent Quiz</h1>
+    <p>Topic: ${results[2] ? results[2].topic : "N/A"}</p>
+    <p>Date: ${results[2] ? results[2].createdAt.toDate().toLocaleDateString() : "N/A"}</p>
+    <p>Score: ${results[2] ? results[2].percentage + "%" : "N/A"}</p>
+   `
+  ;  
 }
 
 loadDashboard();
