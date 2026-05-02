@@ -112,6 +112,8 @@
 
         </div>
 
+        <button id="start-practice">Start Practice</button>
+
       </div>
 
 <!----------------------------------History Container-------------------------->
@@ -267,6 +269,55 @@
     $("#dashboard-li").on("click", () => {
       showSection(sectionMap["#dashboard-li"]);
       setCurrentTab("#dashboard-li");
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const topicBtns = document.querySelectorAll('.topic-btn');
+      const difficultyBtns = document.querySelectorAll('.difficulty-btn');
+      const lengthBtns = document.querySelectorAll('.length-btn');
+      const startPracticeBtn = document.getElementById('start-practice');
+
+      localStorage.removeItem('selectedTopic');
+      localStorage.removeItem('selectedDifficulty');
+      localStorage.removeItem('selectedLength');
+
+      function setActive(btnGroup, activeBtn) {
+        btnGroup.forEach(btn => btn.classList.remove('active'));
+        activeBtn.classList.add('active');
+      }
+
+      topicBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          setActive(topicBtns, btn);
+          localStorage.setItem('selectedTopic', btn.textContent.trim());
+        });
+      });
+
+      difficultyBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          setActive(difficultyBtns, btn);
+          localStorage.setItem('selectedDifficulty', btn.textContent.trim());
+        });
+      });
+
+      lengthBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          setActive(lengthBtns, btn);
+          const lengthMatch = btn.textContent.match(/\d+/);
+          const lengthValue = lengthMatch ? parseInt(lengthMatch[0]) : null;
+          if (lengthValue) {
+            localStorage.setItem('selectedLength', lengthValue);
+          }
+        });
+      });
+
+      if (startPracticeBtn) {
+        startPracticeBtn.addEventListener('click', () => {
+          window.location.href = 'quiz.html';
+        });
+      }
     });
   </script>
 

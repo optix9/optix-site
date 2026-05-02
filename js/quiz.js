@@ -18,56 +18,105 @@ let currentIndex = 0;
 let score = 0;
 let selectedAnswer = null;
 
-let selectedTopic = null;
-let selectedDifficulty = null;
-let selectedLength = null;
+let selectedTopic = localStorage.getItem('selectedTopic');
+let selectedDifficulty = localStorage.getItem('selectedDifficulty');
+const storedLength = localStorage.getItem('selectedLength');
+let selectedLength = storedLength ? parseInt(storedLength) : null;
+
+let quizQuestions = [];
 
 const questionEl = document.getElementById('question');
 const optionsEl = document.getElementById('options');
 const submitBtn = document.getElementById('submit-answer');
 
-submitBtn.style.display = 'none';
+if (submitBtn) {
+  submitBtn.style.display = 'none';
+}
 
-document.querySelectorAll(".topic-btn").forEach(btn => {
+const topicBtns = document.querySelectorAll(".topic-btn");
+const difficultyBtns = document.querySelectorAll(".difficulty-btn");
+const lengthBtns = document.querySelectorAll(".length-btn");
+
+topicBtns.forEach(btn => {
   btn.addEventListener("click", () => {
-    selectedTopic = btn.textContent;
-    console.log("Topic:", selectedTopic);
+    topicBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    selectedTopic = btn.textContent.trim();
+    localStorage.setItem('selectedTopic', selectedTopic);
   });
 });
 
-document.querySelectorAll(".difficulty-btn").forEach(btn => {
+difficultyBtns.forEach(btn => {
   btn.addEventListener("click", () => {
-    selectedDifficulty = btn.textContent;
-    console.log("Difficulty:", selectedDifficulty);
+    difficultyBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    selectedDifficulty = btn.textContent.trim();
+    localStorage.setItem('selectedDifficulty', selectedDifficulty);
   });
 });
 
-document.querySelectorAll(".length-btn").forEach(btn => {
+lengthBtns.forEach(btn => {
   btn.addEventListener("click", () => {
-    selectedLength = parseInt(btn.textContent);
-    console.log("Length:", selectedLength);
+    lengthBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    selectedLength = parseInt(btn.textContent.match(/\d+/)[0]);
+    localStorage.setItem('selectedLength', selectedLength.toString());
   });
 });
 
 function mapDifficulty(diff) {
-  if (diff === "Easy") return "1";
-  if (diff === "Medium") return "2";
-  if (diff === "Hard") return "3";
+  const diffMap = {
+    'Easy': '1',
+    'Medium': '2',
+    'Hard': '3'
+  };
+  return diffMap[diff] || null;
 }
 
-function loadQuestion(){
-  const q = questions[currentIndex];
+function applyFilters() {
+  let filtered = [...allQuestions];
+  
+  if (selectedTopic && selectedTopic !== 'All Topics') {
+    filtered = filtered.filter(q => q.topic.toLowerCase() === selectedTopic.toLowerCase());
+  }
+  
+  if (selectedDifficulty) {
+    const diffCode = mapDifficulty(selectedDifficulty);
+    if (diffCode) {
+      filtered = filtered.filter(q => q.difficulty === diffCode);
+    }
+  }
+  
+  filtered.sort(() => Math.random() - 0.5);
+  
+  if (selectedLength && selectedLength > 0) {
+    filtered = filtered.slice(0, selectedLength);
+  }
+  
+  quizQuestions = filtered;
+}
+
+function loadQuestion() {
+  if (quizQuestions.length === 0) {
+    questionEl.textContent = 'No questions match your filters. Please go back and try again.';
+    return;
+  }
+
+  const q = quizQuestions[currentIndex];
 
   questionEl.textContent = q.question;
   optionsEl.innerHTML = '';
   selectedAnswer = null;
   submitBtn.style.display = 'none';
+  
   document.getElementById("question-title").textContent = `Question ${currentIndex + 1}`;
-  document.getElementById("question-count").textContent = `${currentIndex + 1} of ${questions.length}`;
+  document.getElementById("question-count").textContent = `${currentIndex + 1} of ${quizQuestions.length}`;
 
   const progressFill = document.querySelector('.progress-fill');
-  const progressPercent = ((currentIndex) / questions.length) * 100;
-  progressFill.style.width = `${progressPercent}%`;
+  if (progressFill) {
+    const progressPercent = ((currentIndex) / quizQuestions.length) * 100;
+    progressFill.style.width = `${progressPercent}%`;
+  }
 
   q.options.forEach(option => {
     const btn = document.createElement('button');
@@ -87,36 +136,46 @@ function loadQuestion(){
   });
 }
 
-submitBtn.addEventListener('click', async () => {
-  const q = questions[currentIndex];
-  if (selectedAnswer === q.answer) score++;
+if (submitBtn) {
+  submitBtn.addEventListener('click', async () => {
+    const q = quizQuestions[currentIndex];
+    if (selectedAnswer === q.answer) score++;
 
-  currentIndex++;
-  if (currentIndex < questions.length){
+    currentIndex++;
+    if (currentIndex < quizQuestions.length) {
+      loadQuestion();
+    } else {
+      const total = quizQuestions.length;
+      const percentage = Math.round((score / total) * 100);
+
+      const resultData = {
+        score: score,
+        total: total,
+        percentage: percentage,
+        date: new Date().toLocaleString(),
+        topic: selectedTopic || 'All Topics',
+        difficulty: selectedDifficulty || 'All Difficulties'
+      };
+
+      let history = JSON.parse(localStorage.getItem('quizHistory')) || [];
+      history.push(resultData);
+      localStorage.setItem('quizHistory', JSON.stringify(history));
+      
+      await saveQuizResult(resultData);
+      localStorage.setItem('latestResult', JSON.stringify(resultData));
+      
+      localStorage.removeItem('selectedTopic');
+      localStorage.removeItem('selectedDifficulty');
+      localStorage.removeItem('selectedLength');
+      
+      window.location.href = './results.html';
+    }
+  });
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  if (document.getElementById('question')) {
+    applyFilters();
     loadQuestion();
-  } else {
-
-    const total = questions.length;
-    const percentage = Math.round((score / total) * 100);
-
-    const resultData = {
-      score: score,
-      total: total,
-      percentage: percentage,
-      date: new Date().toLocaleString()
-    };
-
-    let history = JSON.parse(localStorage.getItem('quizHistory')) || [];
-
-    history.push(resultData);
-
-    localStorage.setItem('quizHistory', JSON.stringify(history));
-    
-    await saveQuizResult(resultData);
-
-    localStorage.setItem('latestResult', JSON.stringify(resultData));
-    window.location.href = './results.html';
   }
 });
-
-window.addEventListener('DOMContentLoaded', loadQuestion);

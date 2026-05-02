@@ -334,12 +334,19 @@ a{
   min-width: 140px;
   padding: 14px 18px;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, background 0.2s ease;
 }
 
 .topic-btn:hover, .difficulty-btn:hover, .length-btn:hover{
   background: #6bb8c8;
   transform: translateY(-2px);
+}
+
+.topic-btn.active, .difficulty-btn.active, .length-btn.active{
+  background: #2d5a6e;
+  color: #90c8d4;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(45, 90, 110, 0.4);
 }
 
 .prac-title{
