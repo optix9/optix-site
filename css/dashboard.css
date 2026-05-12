@@ -147,6 +147,21 @@ a{
   box-shadow: 0 8px 24px rgba(3,10,20,0.4);
 }
 
+.roadmap-and-info {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.main-quizzes-area {
+  flex: 1;
+}
+
+.info-main {
+  flex: 0 0 300px;
+}
+
 .quiz-main{
   background: linear-gradient(135deg, rgba(42,59,90,0.3) 0%, rgba(32,45,78,0.4) 100%);
   border-radius: 12px;
@@ -364,6 +379,23 @@ a{
   justify-content: flex-start;
 }
 
+#start-practice{
+  font-family: "Funnel Display", sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #2a3b5a 0%, #3a5578 100%);
+  border: 1px solid #3a7880;
+  border-radius: 12px;
+  padding: 12px 24px;
+}
 
+#start-practice:hover{
+  background: linear-gradient(135deg, #20334c 0%, #0d2545 100%);
+  cursor: pointer;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px #02061499;
+  transition: all 0.3s ease;
+}
 
  /*----------------------------------Challenge Styles--------------------------*/
