@@ -9,9 +9,20 @@ $(function () {
 });
 
 async function loadDashboard() {
-  const results = await getRecentResults();
-
-  console.log("Dashboard data:", results);
+  let results = [];
+  try {
+    results = await getRecentResults();
+    console.log("Dashboard data:", results);
+    console.log("Is array?", Array.isArray(results));
+    
+    if (!Array.isArray(results)) {
+      console.error("getRecentResults() must return an array.");
+      results = [];
+    }
+  } catch (err) {
+    console.error("Error loading dashboard data:", err);
+    results = [];
+  }
 
   if (results.length === 0) {
     document.querySelector(".stats-main-4").innerHTML = `
@@ -19,23 +30,30 @@ async function loadDashboard() {
       <p>Quizzes Taken: 0</p>
       <p>Average Score: 0%</p>
     `;
-    const recentDiv = document.querySelector(".recent-activity-main-5");
-    recentDiv.innerHTML = "<h3>Recent Activity</h3><p>No recent quiz results yet.</p>";
+    document.querySelector(".recent-activity-main-5").innerHTML = `
+      <h3>Recent Activity</h3>
+      <p>No recent quiz results yet.</p>
+    `;
     document.getElementById("avgscore").textContent = "Average Score: 0%";
     document.getElementById("bestscore").textContent = "Best Score: 0%";
-    document.getElementById("xp").textContent = "XP: ";
+    document.getElementById("xp-level").textContent = "XP: ";
     document.getElementById("hardesttopic").textContent = "Hardest Topic: N/A";
     document.getElementById("quizestaken").textContent = "Quizzes Taken: 0";
     document.getElementById("currentstreak").textContent = "Current Streak: 0";
     document.getElementById("longeststreak").textContent = "Longest Streak: 0";
-    const streak = streakUpdate();
-    document.getElementById("streakptag").textContent = `Streak: ${streak} day${streak === 1 ? "" : "s"}`;
     return;
   }
 
   // total quizzes
   const totalQuizzes = results.length;
 
+  function safeDate(r) {
+    if (!r) return new Date();
+    if (r.createdAt && typeof r.createdAt.toDate === 'function') return r.createdAt.toDate();
+    if (r.createdAt && r.createdAt.seconds) return new Date(r.createdAt.seconds * 1000);
+    if (r.createdAt && typeof r.createdAt === 'string') return new Date(r.createdAt);
+    return new Date();
+  }
   // average score
   const avgScore = Math.round(
     results.reduce((sum, r) => sum + r.percentage, 0) / totalQuizzes
@@ -54,7 +72,8 @@ async function loadDashboard() {
 
   results.slice(0,12).forEach(r => {
     const p = document.createElement("p");
-    p.textContent = `${r.percentage}% on ${r.createdAt.toDate().toLocaleDateString("en-US", { month: "numeric", day: "numeric" })}`;
+    const dateObj = safeDate(r);
+    p.textContent = `${r.percentage}% on ${dateObj.toLocaleDateString("en-US", { month: "numeric", day: "numeric" })}`;
     recentDiv.appendChild(p);
     if (r.percentage > 85) {
       p.style.color = "#2cdaaf";
@@ -94,7 +113,7 @@ async function loadDashboard() {
     tableBody.innerHTML = "";
     results.slice(0, shown).forEach(r => {
       const row = tableBody.insertRow();
-      const date = r.createdAt.toDate().toLocaleDateString();
+      const date = safeDate(r).toLocaleDateString();
       row.innerHTML = `
         <td>${date}</td>
         <td>${r.topic || "Unknown"}</td>
@@ -119,7 +138,7 @@ async function loadDashboard() {
   const myChart = new Chart(document.getElementById("performance-chart"), {
     type: "line",
     data: {
-      labels: results.map(r => r.createdAt.toDate().toLocaleDateString("en-US", { month: "numeric", day: "numeric" })),
+      labels: results.map(r => safeDate(r).toLocaleDateString("en-US", { month: "numeric", day: "numeric" })),
       datasets: [{
         label: "Score",
         data: results.map(r => r.percentage),
@@ -188,24 +207,26 @@ async function loadDashboard() {
   document.getElementById("quiz-card").innerHTML = `
     <h1 style="font-family: 'Funnel Display', sans-serif; font-weight: 800; color: #abcdda; margin: 0 0 10px 0; font-size: 20px;">Most Recent Quiz</h1>
     <p>Topic: ${results[0].topic}</p>
-    <p>Date: ${results[0].createdAt.toDate().toLocaleDateString()}</p>
+    <p>Date: ${safeDate(results[0]).toLocaleDateString()}</p>
     <p>Score: ${results[0].percentage}%</p>
   `;
 
   document.getElementById("quiz-card-2").innerHTML = `
     <h1 style="font-family: 'Funnel Display', sans-serif; font-weight: 800; color: #abcdda; margin: 0 0 10px 0; font-size: 18px;">Second Most Recent Quiz</h1>
     <p>Topic: ${results[1] ? results[1].topic : "N/A"}</p>
-    <p>Date: ${results[1] ? results[1].createdAt.toDate().toLocaleDateString() : "N/A"}</p>
+    <p>Date: ${results[1] ? safeDate(results[1]).toLocaleDateString() : "N/A"}</p>
     <p>Score: ${results[1] ? results[1].percentage + "%" : "N/A"}</p>
   `;
 
   document.getElementById("quiz-card-3").innerHTML = `
     <h1 style="font-family: 'Funnel Display', sans-serif; font-weight: 800; color: #abcdda; margin: 0 0 10px 0; font-size: 18px;">Third Most Recent Quiz</h1>
     <p>Topic: ${results[2] ? results[2].topic : "N/A"}</p>
-    <p>Date: ${results[2] ? results[2].createdAt.toDate().toLocaleDateString() : "N/A"}</p>
+    <p>Date: ${results[2] ? safeDate(results[2]).toLocaleDateString() : "N/A"}</p>
     <p>Score: ${results[2] ? results[2].percentage + "%" : "N/A"}</p>
    `
   ;  
 }
 
-loadDashboard();
+document.addEventListener('DOMContentLoaded', () => {
+  loadDashboard().catch(err => console.error('loadDashboard failed:', err));
+});
