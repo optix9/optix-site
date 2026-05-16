@@ -13,7 +13,25 @@ async function loadDashboard() {
 
   console.log("Dashboard data:", results);
 
-  if (results.length === 0) return;
+  if (results.length === 0) {
+    document.querySelector(".stats-main-4").innerHTML = `
+      <h3>Stats</h3>
+      <p>Quizzes Taken: 0</p>
+      <p>Average Score: 0%</p>
+    `;
+    const recentDiv = document.querySelector(".recent-activity-main-5");
+    recentDiv.innerHTML = "<h3>Recent Activity</h3><p>No recent quiz results yet.</p>";
+    document.getElementById("avgscore").textContent = "Average Score: 0%";
+    document.getElementById("bestscore").textContent = "Best Score: 0%";
+    document.getElementById("xp").textContent = "XP: ";
+    document.getElementById("hardesttopic").textContent = "Hardest Topic: N/A";
+    document.getElementById("quizestaken").textContent = "Quizzes Taken: 0";
+    document.getElementById("currentstreak").textContent = "Current Streak: 0";
+    document.getElementById("longeststreak").textContent = "Longest Streak: 0";
+    const streak = streakUpdate();
+    document.getElementById("streakptag").textContent = `Streak: ${streak} day${streak === 1 ? "" : "s"}`;
+    return;
+  }
 
   // total quizzes
   const totalQuizzes = results.length;
@@ -24,28 +42,43 @@ async function loadDashboard() {
   );
 
   // update stats
-  document.querySelector(".stats-main").innerHTML = `
+  document.querySelector(".stats-main-4").innerHTML = `
     <h3>Stats</h3>
     <p>Quizzes Taken: ${totalQuizzes}</p>
     <p>Average Score: ${avgScore}%</p>
   `;
 
   // recent activity
-  const recentDiv = document.querySelector(".recent-activity-main");
+  const recentDiv = document.querySelector(".recent-activity-main-5");
   recentDiv.innerHTML = "<h3>Recent Activity</h3>";
 
-  results.forEach(r => {
+  results.slice(0,12).forEach(r => {
     const p = document.createElement("p");
     p.textContent = `${r.percentage}% on ${r.createdAt.toDate().toLocaleDateString("en-US", { month: "numeric", day: "numeric" })}`;
     recentDiv.appendChild(p);
+    if (r.percentage > 85) {
+      p.style.color = "#2cdaaf";
+    }
+    else if (r.percentage > 70) {
+      p.style.color = "#6973ce";
+    }
+    else if (r.percentage > 50) {
+      p.style.color = "#f9c245";
+    }
+    else {
+      p.style.color = "#ff6b6b";
+    }
   });
 
   document.getElementById("avgscore").textContent = `Average Score: ${avgScore}%`;
-  document.getElementById("quizestaken").textContent = `Quizzes Taken: ${totalQuizzes}`;  
+  document.getElementById("quizestaken").textContent = `Quizzes Taken: ${totalQuizzes}`;
   document.getElementById("bestscore").textContent = `Best Score: ${Math.max(...results.map(r => r.percentage))}%`;
   
+
+ 
   const streak = streakUpdate();
   document.getElementById("currentstreak").textContent = `Current Streak: ${streak}`;
+  document.getElementById("longeststreak").textContent = `Longest Streak: ${streak}`;
   if (streak > 1) {
     document.getElementById("streakptag").textContent = `Streak: ${streak} days`;
   } else {
@@ -64,8 +97,8 @@ async function loadDashboard() {
       const date = r.createdAt.toDate().toLocaleDateString();
       row.innerHTML = `
         <td>${date}</td>
-        <td>--</td>
-        <td>--</td>
+        <td>${r.topic || "Unknown"}</td>
+        <td>${r.difficulty || "Unknown"}</td>
         <td>${r.percentage}%</td>
       `;
     });

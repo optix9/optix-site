@@ -17,7 +17,7 @@
 
   <div id="dashboard-container">
 
-    <div id="sidebar">
+    <div id="sidebar-1">
       <h2>Optix</h2>
       <ul>
         <li class="current" id="dashboard-li">🏠Dashboard</li>
@@ -30,9 +30,7 @@
       </ul>
     </div>
 
-    <div id="main-area">
-
-      <div class="header-div change-class">
+    <div class="header-div-2 change-class">
         <h1 id="welcome-text">Welcome!</h1>
 
         <div class="p-text-header">
@@ -40,117 +38,150 @@
           <p class="badge" id="streakptag">Streak: __d</p>
         </div>
 
-      </div>
+    </div>
 
-      <div class="main-center change-class">
+    <div class="learning-path-3 change-class">
 
-        <div class="quiz-main">
-          <h3>Start Quiz🚀</h3>
-          <button id="start-quiz-button" onclick="window.location.href='quiz.html'">Start</button>
-        </div>
+      <div class="level-selector">
 
-        <div class="main-quizzes-area">
+        <div class="level-top">
 
-          <div class="roadmap-header">
-            <h1>Level 1: Algebra Foundations</h1>
-            <h3>Current Topic: Addition Basics</h3>
+          <div class="currentlevel">
+            <h3>Level 1: Algebra Foundations</h3>
+            <p>Current Topic: Algebra Basics</p>
           </div>
 
-          <div id="roadmap-scroll">
-            <div class="roadmap-line"></div>
+          <button id="all-levels">▽</button>
+
+        </div>
+
+        <div id="levels-dropdown" class="hidden">
+
+          <div class="leveldiv current-level-class" id="level1">
+            <h3>Level 1: Algebra Foundations</h3>
+          </div>
+
+          <div class="leveldiv locked-level-class" id="level2">
+            <h3>Level 2: Geometry Foundations</h3>
+          </div>
+
+          <div class="leveldiv locked-level-class" id="level3">
+            <h3>Level 3: Number Theory Foundations</h3>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div id="roadmap-scroll">
+
+        <div class="roadmap-line"></div>
     
-            <div class="roadmap-topic completed">
-              <div class="node">1</div>
-              <div class="quiz-name">Addition Basics</div>
-            </div>
-
-            <div class="roadmap-topic current">
-              <div class="node">2</div>
-              <div class="quiz-name">Subtraction Basics</div>
-            </div>
-
-            <div class="roadmap-topic upcoming">
-              <div class="node">3</div>
-              <div class="quiz-name">Number Sense</div>
-            </div>
-
-            <div class="roadmap-topic upcoming">
-              <div class="node">4</div>
-              <div class="quiz-name">Place Value</div>
-            </div>
-          </div>
-            
-
+        <div class="roadmap-topic completed">
+          <div class="node">1</div>
+          <div class="quiz-name">Addition Basics</div>
         </div>
-  
 
-        <div class="info-main">
+        <div class="roadmap-topic current">
+          <div class="node">2</div>
+          <div class="quiz-name">Subtraction Basics</div>
+        </div>
 
-          <div class="stats-main">
-            <h3>Stats</h3>
-            <p>Rating: __</p>
-            <p>Quizzes Taken: __</p>
-            <p>Overall Accuracy: __</p>
-          </div>
+        <div class="roadmap-topic upcoming">
+          <div class="node">3</div>
+          <div class="quiz-name">Number Sense</div>
+        </div>
 
-          <div class="recent-activity-main"> 
-            <h3>Recent Activity</h3>
-            <p>Algebra - </p>
-            <p>Geometry - </p>
-            <p>Number Theory - </p>
-          </div>
-
+        <div class="roadmap-topic upcoming">
+          <div class="node">4</div>
+          <div class="quiz-name">Place Value</div>
         </div>
 
       </div>
+
+    </div>
+
+    <div class="stats-main-4 change-class">
+      <h3>Stats</h3>
+      <p>Quizzes Taken: __</p>
+      <p>Overall Accuracy: __</p>
+    </div>
+
+    <div class="recent-activity-main-5 change-class"> 
+      <h3>Recent Activity</h3>
+      <p>Algebra - </p>
+      <p>Geometry - </p>
+      <p>Number Theory - </p>
+    </div>
+
+    <footer class="action-footer-6">
+
+        <div class="action-cards">
+
+          <div class="card change-class">
+            <h3>Practice Topics</h3>
+            <p>Practice whatever topic you want!</p>
+          </div>
+
+          <div class="card change-class">
+            <h3>Challenge Quiz</h3>
+            <p>Up for a challenge?</p>
+          </div>
+
+        </div>
+
+    </footer>
 
       <!----------------------------------Practice Container-------------------------->
 
-      <div id="practice-container">
+  <div id="practice-container">
 
-        <h2 id="practice-title">Practice Mode</h2>
-        <p>Here, you can practice specific topics at your own pace.</p>
+    <h2 id="practice-title">Practice Mode</h2>
+    <p>Here, you can practice specific topics at your own pace.</p>
 
-        <div class="practice-topics">
+    <div class="practice-topics">
 
-          <h3 class="prac-title">Practice</h3>
+      <h3 class="prac-title">Practice</h3>
 
-          <div class="button-row">
-            <button class="topic-btn">Algebra</button>
-            <button class="topic-btn">Geometry</button>
-            <button class="topic-btn">Number Theory</button>
-            <button class="topic-btn">Probability</button>
-          </div>
-
+        <div class="button-row">
+          <button class="topic-btn">Algebra</button>
+          <button class="topic-btn">Geometry</button>
+          <button class="topic-btn">Number Theory</button>
+          <button class="topic-btn">Probability</button>
         </div>
-
-        <div class="difficulty">
-
-          <h3 class="prac-title">Choose Difficulty</h3>
-
-          <div class="button-row">
-            <button class="difficulty-btn">Easy</button>
-            <button class="difficulty-btn">Medium</button>
-            <button class="difficulty-btn">Hard</button>
-          </div>
-
-        </div>
-
-        <div class="length-practice">
-
-          <h3 class="prac-title">Choose Length</h3>
-
-          <div class="button-row">
-            <button class="length-btn">5 Questions</button>
-            <button class="length-btn">10 Questions</button>
-            <button class="length-btn">20 Questions</button>
-          </div>
-
-        </div>
-
-        <button id="start-practice">Start Practice</button>
 
       </div>
+
+      <div class="difficulty">
+
+        <h3 class="prac-title">Choose Difficulty</h3>
+
+        <div class="button-row">
+          <button class="difficulty-btn">Easy</button>
+          <button class="difficulty-btn">Medium</button>
+          <button class="difficulty-btn">Hard</button>
+        </div>
+
+      </div>
+
+      <div class="length-practice">
+
+        <h3 class="prac-title">Choose Length</h3>
+
+        <div class="button-row">
+          <button class="length-btn">5 Questions</button>
+          <button class="length-btn">10 Questions</button>
+          <button class="length-btn">20 Questions</button>
+        </div>
+
+      </div>
+
+      <button id="start-practice">Start Practice</button>
+
+    </div>
+
+
+   </div>
 
 <!----------------------------------History Container-------------------------->
 
@@ -235,14 +266,6 @@
 
       </div>
 
-    </div>
-
-    <div id="recos" class="change-class">
-      <h3>Recommendations</h3>
-      <p>Practice Algebra</p>
-      <p>Tip: Focus on weak topics for 15 minutes daily.</p>
-    </div>
-    
   </div>
 
   <!----------------------------------Challenge Container-------------------------->
@@ -264,6 +287,8 @@
       "#history": "#history-container"
     };
 
+    
+
     function setCurrentTab(tabId) {
       activeTabs.forEach(id => $(id).removeClass("current"));
       $(tabId).addClass("current");
@@ -273,12 +298,10 @@
   const allSections = $(".change-class, #practice-container, #history-container");
   const container = $("#dashboard-container");
 
-  if (selector === "#history-container") {
-    // Force the main dashboard grid to only have 2 columns instead of 3
+  if (selector === "#history-container" || selector === "#practice-container") {
     container.css("grid-template-columns", "275px 1fr");
     $("#recos").hide();
   } else {
-    // Restore the 3-column layout (Sidebar | Main | Recommendations)
     container.css("grid-template-columns", "275px 1fr 300px");
     $("#recos").show();
   }
@@ -355,6 +378,16 @@
         });
       }
     });
+
+    $("#levels-dropdown").hide();
+
+    $("#all-levels").click(function () {
+      $("#levels-dropdown").slideToggle(200);
+      $(this).text(function (i, text) {
+        return text === "▽" ? "△" : "▽";
+      });
+    });
+
   </script>
 
 </body>

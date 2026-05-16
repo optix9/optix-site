@@ -2,7 +2,8 @@
   "type": "module",
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
-    "dotenv": "^17.4.2"
+    "dotenv": "^17.4.2",
+    "groq-sdk": "^1.2.0"
   },
   "scripts": {
     "gemini": "node ai/gemini.js"
