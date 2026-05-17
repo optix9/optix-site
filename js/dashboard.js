@@ -1,15 +1,23 @@
 import { getRecentResults, streakUpdate } from "./storage.js";
 
-let progress =
-  JSON.parse(localStorage.getItem("progress")) || {
+function getTopicId(topicName) {
+  return topicName.toLowerCase().trim().replaceAll(" ", "-");
+}
 
-    completedTopics: [],
+function loadProgress() {
+  const savedProgress = JSON.parse(localStorage.getItem("progress")) || {};
+  const progress = {
+    completedTopics: savedProgress.completedTopics || [],
+    unlockedTopics: savedProgress.unlockedTopics || ["addition-basics"]
+  };
 
-    unlockedTopics: [
-      "addition-basics"
-    ]
+  progress.completedTopics = progress.completedTopics.map(getTopicId);
+  progress.unlockedTopics = progress.unlockedTopics.map(getTopicId);
 
-};
+  return progress;
+}
+
+let progress = loadProgress();
 
 $(function () {
   let name = localStorage.getItem("username");
@@ -276,51 +284,6 @@ document.querySelectorAll(".roadmap-topic").forEach(topic => {
         "generatedQuestions",
         JSON.stringify(questions)
       );
-
-      let progress =
-  JSON.parse(localStorage.getItem("progress")) || {
-    completedTopics: [],
-    unlockedTopics: ["addition-basics"]
-};
-
-const topicOrder = [
-  "addition-basics",
-  "subtraction-basics",
-  "number-sense"
-];
-
-const currentTopicId =
-  selectedTopic.toLowerCase().replaceAll(" ", "-");
-
-if (percentage >= 70) {
-
-  if (!progress.completedTopics.includes(currentTopicId)) {
-
-    progress.completedTopics.push(currentTopicId);
-
-  }
-
-  const currentIndex =
-    topicOrder.indexOf(currentTopicId);
-
-  const nextTopic =
-    topicOrder[currentIndex + 1];
-
-  if (
-    nextTopic &&
-    !progress.unlockedTopics.includes(nextTopic)
-  ) {
-
-    progress.unlockedTopics.push(nextTopic);
-
-  }
-
-  localStorage.setItem(
-    "progress",
-    JSON.stringify(progress)
-  );
-
-}
 
       window.location.href = "./quiz.html";
 

@@ -9,6 +9,46 @@ let selectedTopic = localStorage.getItem('selectedTopic');
 let quizQuestions =
   JSON.parse(localStorage.getItem("generatedQuestions")) || [];
 
+const topicOrder = [
+  "addition-basics",
+  "subtraction-basics",
+  "harder-arithmetic",
+  "word-problems",
+  "2-digit-place-value"
+];
+
+function getTopicId(topicName) {
+  return topicName.toLowerCase().trim().replaceAll(" ", "-");
+}
+
+function updateProgress(topicName, percentage) {
+  if (!topicName || percentage < 70) return;
+
+  const savedProgress = JSON.parse(localStorage.getItem("progress")) || {};
+  const progress = {
+    completedTopics: savedProgress.completedTopics || [],
+    unlockedTopics: savedProgress.unlockedTopics || ["addition-basics"]
+  };
+
+  progress.completedTopics = progress.completedTopics.map(getTopicId);
+  progress.unlockedTopics = progress.unlockedTopics.map(getTopicId);
+
+  const currentTopicId = getTopicId(topicName);
+
+  if (!progress.completedTopics.includes(currentTopicId)) {
+    progress.completedTopics.push(currentTopicId);
+  }
+
+  const currentIndex = topicOrder.indexOf(currentTopicId);
+  const nextTopic = topicOrder[currentIndex + 1];
+
+  if (nextTopic && !progress.unlockedTopics.includes(nextTopic)) {
+    progress.unlockedTopics.push(nextTopic);
+  }
+
+  localStorage.setItem("progress", JSON.stringify(progress));
+}
+
 const questionEl = document.getElementById('question');
 const optionsEl = document.getElementById('options');
 const submitBtn = document.getElementById('submit-answer');
@@ -82,6 +122,8 @@ if (submitBtn) {
       let history = JSON.parse(localStorage.getItem('quizHistory')) || [];
       history.push(resultData);
       localStorage.setItem('quizHistory', JSON.stringify(history));
+
+      updateProgress(selectedTopic, percentage);
       
       await saveQuizResult(resultData);
       localStorage.setItem('latestResult', JSON.stringify(resultData));
