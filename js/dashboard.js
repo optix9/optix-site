@@ -1,5 +1,16 @@
 import { getRecentResults, streakUpdate } from "./storage.js";
 
+let progress =
+  JSON.parse(localStorage.getItem("progress")) || {
+
+    completedTopics: [],
+
+    unlockedTopics: [
+      "addition-basics"
+    ]
+
+};
+
 $(function () {
   let name = localStorage.getItem("username");
 
@@ -226,6 +237,128 @@ async function loadDashboard() {
    `
   ;  
 }
+
+//Quiz page aigroq generation
+
+document.querySelectorAll(".roadmap-topic").forEach(topic => {
+
+  topic.addEventListener("click", async () => {
+
+    if (topic.classList.contains("upcoming")) {
+      return;
+    }
+
+    const topicName =
+      topic.querySelector(".quiz-name").textContent;
+
+    localStorage.setItem("selectedTopic", topicName);
+
+    try {
+
+      const response = await fetch(
+        "http://localhost:3001/generate-quiz",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            topic: topicName,
+            difficulty: "Easy",
+            count: 10
+          })
+        }
+      );
+
+      const questions = await response.json();
+
+      localStorage.setItem(
+        "generatedQuestions",
+        JSON.stringify(questions)
+      );
+
+      let progress =
+  JSON.parse(localStorage.getItem("progress")) || {
+    completedTopics: [],
+    unlockedTopics: ["addition-basics"]
+};
+
+const topicOrder = [
+  "addition-basics",
+  "subtraction-basics",
+  "number-sense"
+];
+
+const currentTopicId =
+  selectedTopic.toLowerCase().replaceAll(" ", "-");
+
+if (percentage >= 70) {
+
+  if (!progress.completedTopics.includes(currentTopicId)) {
+
+    progress.completedTopics.push(currentTopicId);
+
+  }
+
+  const currentIndex =
+    topicOrder.indexOf(currentTopicId);
+
+  const nextTopic =
+    topicOrder[currentIndex + 1];
+
+  if (
+    nextTopic &&
+    !progress.unlockedTopics.includes(nextTopic)
+  ) {
+
+    progress.unlockedTopics.push(nextTopic);
+
+  }
+
+  localStorage.setItem(
+    "progress",
+    JSON.stringify(progress)
+  );
+
+}
+
+      window.location.href = "./quiz.html";
+
+    } catch (err) {
+
+      console.error(err);
+
+    }
+
+  });
+
+});
+
+//Load Roadmap classes
+
+document.querySelectorAll(".roadmap-topic").forEach(topic => {
+
+  const topicId = topic.dataset.id;
+
+  topic.classList.remove(
+    "completed",
+    "current",
+    "upcoming"
+  );
+
+  if (progress.completedTopics.includes(topicId)) {
+    topic.classList.add("completed");
+  }
+
+  else if (progress.unlockedTopics.includes(topicId)) {
+    topic.classList.add("current");
+  }
+
+  else {
+    topic.classList.add("upcoming");
+  }
+
+});
 
 document.addEventListener('DOMContentLoaded', () => {
   loadDashboard().catch(err => console.error('loadDashboard failed:', err));

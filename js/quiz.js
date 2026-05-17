@@ -1,29 +1,13 @@
-import {
-  algebraQuestions,
-  geometryQuestions,
-  numberTheoryQuestions,
-  probabilityQuestions
-} from "../data/questions.js";
-
 import { saveQuizResult } from "./storage.js";
-
-const allQuestions = [
-  ...algebraQuestions,
-  ...geometryQuestions,
-  ...numberTheoryQuestions,
-  ...probabilityQuestions
-];
 
 let currentIndex = 0;
 let score = 0;
 let selectedAnswer = null;
 
 let selectedTopic = localStorage.getItem('selectedTopic');
-let selectedDifficulty = localStorage.getItem('selectedDifficulty');
-const storedLength = localStorage.getItem('selectedLength');
-let selectedLength = storedLength ? parseInt(storedLength) : null;
 
-let quizQuestions = [];
+let quizQuestions =
+  JSON.parse(localStorage.getItem("generatedQuestions")) || [];
 
 const questionEl = document.getElementById('question');
 const optionsEl = document.getElementById('options');
@@ -33,68 +17,6 @@ if (submitBtn) {
   submitBtn.style.display = 'none';
 }
 
-const topicBtns = document.querySelectorAll(".topic-btn");
-const difficultyBtns = document.querySelectorAll(".difficulty-btn");
-const lengthBtns = document.querySelectorAll(".length-btn");
-
-topicBtns.forEach(btn => {
-  btn.addEventListener("click", () => {
-    topicBtns.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    selectedTopic = btn.textContent.trim();
-    localStorage.setItem('selectedTopic', selectedTopic);
-  });
-});
-
-difficultyBtns.forEach(btn => {
-  btn.addEventListener("click", () => {
-    difficultyBtns.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    selectedDifficulty = btn.textContent.trim();
-    localStorage.setItem('selectedDifficulty', selectedDifficulty);
-  });
-});
-
-lengthBtns.forEach(btn => {
-  btn.addEventListener("click", () => {
-    lengthBtns.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    selectedLength = parseInt(btn.textContent.match(/\d+/)[0]);
-    localStorage.setItem('selectedLength', selectedLength.toString());
-  });
-});
-
-function mapDifficulty(diff) {
-  const diffMap = {
-    'Easy': '1',
-    'Medium': '2',
-    'Hard': '3'
-  };
-  return diffMap[diff] || null;
-}
-
-function applyFilters() {
-  let filtered = [...allQuestions];
-  
-  if (selectedTopic && selectedTopic !== 'All Topics') {
-    filtered = filtered.filter(q => q.topic.toLowerCase() === selectedTopic.toLowerCase());
-  }
-  
-  if (selectedDifficulty) {
-    const diffCode = mapDifficulty(selectedDifficulty);
-    if (diffCode) {
-      filtered = filtered.filter(q => q.difficulty === diffCode);
-    }
-  }
-  
-  filtered.sort(() => Math.random() - 0.5);
-  
-  if (selectedLength && selectedLength > 0) {
-    filtered = filtered.slice(0, selectedLength);
-  }
-  
-  quizQuestions = filtered;
-}
 
 function loadQuestion() {
   if (quizQuestions.length === 0) {
@@ -154,7 +76,7 @@ if (submitBtn) {
         percentage: percentage,
         date: new Date().toLocaleString(),
         topic: selectedTopic || 'All Topics',
-        difficulty: selectedDifficulty || 'All Difficulties'
+        difficulty: "AI Generated"
       };
 
       let history = JSON.parse(localStorage.getItem('quizHistory')) || [];
@@ -165,17 +87,12 @@ if (submitBtn) {
       localStorage.setItem('latestResult', JSON.stringify(resultData));
       
       localStorage.removeItem('selectedTopic');
-      localStorage.removeItem('selectedDifficulty');
-      localStorage.removeItem('selectedLength');
-      
+      localStorage.removeItem("generatedQuestions");
       window.location.href = './results.html';
     }
   });
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-  if (document.getElementById('question')) {
-    applyFilters();
-    loadQuestion();
-  }
-});
+if (document.getElementById('question')) {
+  loadQuestion();
+}

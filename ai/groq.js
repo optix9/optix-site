@@ -1,3 +1,5 @@
+import express from "express";
+import cors from "cors";
 import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -8,16 +10,25 @@ const __dirname = path.dirname(__filename);
 
 dotenv.config({ path: path.resolve(__dirname, ".env.local") });
 
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+
 const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY,
 });
 
-async function run() {
+app.post("/generate-quiz", async (req, res) => {
 
-  const prompt =
-    process.argv.slice(2).join(" ") ||
-    `
-Generate 3 Grade 12 olympiad calculus questions.
+  try {
+
+    const { topic, difficulty, count } = req.body;
+
+    const prompt = `
+Generate ${count} multiple choice math questions about ${topic}.
+
+Difficulty: ${difficulty}.
 
 Return ONLY valid JSON.
 
@@ -31,10 +42,6 @@ Format:
 ]
 `;
 
-  console.log("Prompt:", prompt);
-
-  try {
-
     const chatCompletion = await groq.chat.completions.create({
       messages: [
         {
@@ -45,11 +52,22 @@ Format:
       model: "llama-3.3-70b-versatile",
     });
 
-    console.log(chatCompletion.choices[0].message.content);
+    const text = chatCompletion.choices[0].message.content;
+
+    res.json(JSON.parse(text));
 
   } catch (error) {
-    console.error(error);
-  }
-}
 
-run();
+    console.error(error);
+
+    res.status(500).json({
+      error: "Failed to generate quiz"
+    });
+
+  }
+
+});
+
+app.listen(3001, () => {
+  console.log("Server running on port 3001");
+});

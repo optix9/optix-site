@@ -57,7 +57,7 @@ body {
     display: grid;
     gap: 24px;
     padding: 24px;
-    grid-template-columns: 275px 1fr 300px;
+    grid-template-columns: 275px minmax(0, 1fr) 300px;
     grid-template-areas: 
         "sidebar welcome stats"
         "sidebar main activity"
@@ -294,6 +294,7 @@ a{
   border-radius: 12px;
   padding: 16px;
   box-shadow: 0 8px 24px rgba(3,10,20,0.5);
+  min-width: 0;
 }
 
 .roadmap-header h1 {
@@ -320,22 +321,17 @@ a{
   align-items: center;
   gap: 70px;
   height: 280px;
+  max-width: 100%;
   overflow-x: auto;
   padding: 0 50px;
   scrollbar-width: thin;
   scrollbar-color: #3a7880 #15162a;
-}
 
-.roadmap-line {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 100%;
-  height: 6px;
-  background: rgba(40, 68, 102, 0.4);
-  z-index: 1;
-  transform: translateY(-28px);
-  border-radius: 10px;
+  background-image: linear-gradient(rgba(40, 68, 102, 0.4), rgba(40, 68, 102, 0.4));
+  background-size: 100% 6px;
+  background-position: left calc(50% - 15px); 
+  background-repeat: no-repeat;
+  background-attachment: local; 
 }
 
 .roadmap-topic {
