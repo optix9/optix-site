@@ -9,6 +9,7 @@
   width: 100%;
   box-sizing: border-box;
   grid-column: 2 / span 2;
+  grid-row: 1 / span 3;
 }
 
 #history-container h1 {

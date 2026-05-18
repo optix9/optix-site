@@ -27,6 +27,7 @@
         <li id="history">📜History</li>
         <li id="achievements">🏆Achievements</li>
         <li id="profile">🪪Profile</li>
+        <li id="logout">🚪Logout</li>
       </ul>
     </div>
 
@@ -188,8 +189,6 @@
     </div>
 
 
-   </div>
-
 <!----------------------------------History Container-------------------------->
 
       <div id="history-container">
@@ -286,10 +285,26 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0"></script>
   <script type="module" src="../js/dashboard.js"></script>
 
+  <script type="module">
+    import { requireLogin, logoutUser } from "../js/auth.js";
+
+    requireLogin();
+
+    const logoutBtn = document.getElementById('logout');
+
+    if (logoutBtn) {
+      logoutBtn.addEventListener("click", async () => {
+        await logoutUser();
+        window.location.href = "login.html";
+      });
+    }
+
+  </script>
+
   <script>
     const activeTabs = ["#dashboard-li", "#practice", "#history"];
     const sectionMap = {
-      "#dashboard-li": ".change-class",
+      "#dashboard-li": ".change-class, .action-footer-6",
       "#practice": "#practice-container",
       "#history": "#history-container"
     };
@@ -302,7 +317,7 @@
     }
 
     function showSection(selector) {
-  const allSections = $(".change-class, #practice-container, #history-container");
+  const allSections = $(".change-class, .action-footer-6, #practice-container, #history-container");
   const container = $("#dashboard-container");
 
   if (selector === "#history-container" || selector === "#practice-container") {

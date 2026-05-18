@@ -1,4 +1,4 @@
-import { saveQuizResult } from "./storage.js";
+import { getUserProgress, saveQuizResult, saveUserProgress } from "./storage.js";
 
 let currentIndex = 0;
 let score = 0;
@@ -21,10 +21,10 @@ function getTopicId(topicName) {
   return topicName.toLowerCase().trim().replaceAll(" ", "-");
 }
 
-function updateProgress(topicName, percentage) {
+async function updateProgress(topicName, percentage) {
   if (!topicName || percentage < 70) return;
 
-  const savedProgress = JSON.parse(localStorage.getItem("progress")) || {};
+  const savedProgress = await getUserProgress();
   const progress = {
     completedTopics: savedProgress.completedTopics || [],
     unlockedTopics: savedProgress.unlockedTopics || ["addition-basics"]
@@ -46,7 +46,7 @@ function updateProgress(topicName, percentage) {
     progress.unlockedTopics.push(nextTopic);
   }
 
-  localStorage.setItem("progress", JSON.stringify(progress));
+  await saveUserProgress(progress);
 }
 
 const questionEl = document.getElementById('question');
@@ -123,7 +123,7 @@ if (submitBtn) {
       history.push(resultData);
       localStorage.setItem('quizHistory', JSON.stringify(history));
 
-      updateProgress(selectedTopic, percentage);
+      await updateProgress(selectedTopic, percentage);
       
       await saveQuizResult(resultData);
       localStorage.setItem('latestResult', JSON.stringify(resultData));

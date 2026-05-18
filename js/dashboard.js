@@ -1,11 +1,17 @@
-import { getRecentResults, streakUpdate } from "./storage.js";
+import { getCurrentUser, getRecentResults, getUserProgress, streakUpdate } from "./storage.js";
+
+const QUIZ_API_URL =
+  localStorage.getItem("optixQuizApiUrl") ||
+  (["localhost", "127.0.0.1"].includes(window.location.hostname)
+    ? "http://localhost:3001"
+    : "");
 
 function getTopicId(topicName) {
   return topicName.toLowerCase().trim().replaceAll(" ", "-");
 }
 
-function loadProgress() {
-  const savedProgress = JSON.parse(localStorage.getItem("progress")) || {};
+async function loadProgress() {
+  const savedProgress = await getUserProgress();
   const progress = {
     completedTopics: savedProgress.completedTopics || [],
     unlockedTopics: savedProgress.unlockedTopics || ["addition-basics"]
@@ -17,10 +23,9 @@ function loadProgress() {
   return progress;
 }
 
-let progress = loadProgress();
-
-$(function () {
-  let name = localStorage.getItem("username");
+$(async function () {
+  const user = await getCurrentUser();
+  let name = user ? user.displayName : "";
 
   if (name) {
     $("#welcome-text").text("Welcome, " + name);
@@ -262,9 +267,12 @@ document.querySelectorAll(".roadmap-topic").forEach(topic => {
     localStorage.setItem("selectedTopic", topicName);
 
     try {
+      if (!QUIZ_API_URL) {
+        throw new Error("Quiz API URL is not configured for this public site.");
+      }
 
       const response = await fetch(
-        "http://localhost:3001/generate-quiz",
+        `${QUIZ_API_URL}/generate-quiz`,
         {
           method: "POST",
           headers: {
@@ -297,32 +305,40 @@ document.querySelectorAll(".roadmap-topic").forEach(topic => {
 
 });
 
-//Load Roadmap classes
+function renderRoadmap(progress) {
+  document.querySelectorAll(".roadmap-topic").forEach(topic => {
 
-document.querySelectorAll(".roadmap-topic").forEach(topic => {
+    const topicId = topic.dataset.id;
 
-  const topicId = topic.dataset.id;
+    topic.classList.remove(
+      "completed",
+      "current",
+      "upcoming"
+    );
 
-  topic.classList.remove(
-    "completed",
-    "current",
-    "upcoming"
-  );
+    if (progress.completedTopics.includes(topicId)) {
+      topic.classList.add("completed");
+    }
 
-  if (progress.completedTopics.includes(topicId)) {
-    topic.classList.add("completed");
-  }
+    else if (progress.unlockedTopics.includes(topicId)) {
+      topic.classList.add("current");
+    }
 
-  else if (progress.unlockedTopics.includes(topicId)) {
-    topic.classList.add("current");
-  }
+    else {
+      topic.classList.add("upcoming");
+    }
 
-  else {
-    topic.classList.add("upcoming");
-  }
-
-});
+  });
+}
 
 document.addEventListener('DOMContentLoaded', () => {
-  loadDashboard().catch(err => console.error('loadDashboard failed:', err));
+  getCurrentUser().then(user => {
+    if (!user) return;
+
+    loadProgress()
+      .then(renderRoadmap)
+      .catch(err => console.error('loadProgress failed:', err));
+
+    loadDashboard().catch(err => console.error('loadDashboard failed:', err));
+  });
 });

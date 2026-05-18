@@ -68,22 +68,48 @@ input{
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 20px;
 }
 
-#submitBtn{
-  text-decoration: none;
-  font-size: 23px;
-  padding: 10px 20px;
-  font-weight: 600;
+.login-btn, .signup-btn{
+  background-color: #ffffff;
+  border: 2px solid #090101;
+  border-radius: 4px;
+  color: #333333;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
   font-family: "Funnel Display", sans-serif;
-  color: #13242c;
-  border: 2px Solid #1b334b;
-  box-shadow: 2px 2px 3px #000000;
-  background-color: transparent;
+  font-size: 17px;
+  padding: 14px 20px;
 }
 
-#submitBtn:hover{
-  font-size: 24.5px;
-  transition: 0.5s ease;
+.login-btn:hover, .signup-btn:hover{
+  transition: 0.5s all ease;
   box-shadow: 3px 3px 5px #7f96a4;
+}
+
+.google-login-btn, .google-signup-btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    border: 2px solid #090101;
+    border-radius: 4px;
+    color: #333333;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: "Funnel Display", sans-serif;
+    font-size: 17px;
+}
+
+.google-login-btn img, .google-signup-btn img {
+    width: 30px;
+    margin-right: 10px;
+}
+
+.google-login-btn:hover, .google-signup-btn:hover{
+    background-color: #d3e4eb;
 }
