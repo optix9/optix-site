@@ -21,7 +21,6 @@
       <h2>Optix</h2>
       <ul>
         <li class="current" id="dashboard-li">🏠Dashboard</li>
-        <li><a id="start-quiz" onclick="window.location.href='quiz.html'">📘Start Quiz</a></li>
         <li id="practice">📝Practice</li>
         <li id="challenge">🎮Challenge</li>
         <li id="history">📜History</li>
@@ -144,25 +143,26 @@
 
   <div id="practice-container">
 
-    <h2 id="practice-title">Practice Mode</h2>
-    <p>Here, you can practice specific topics at your own pace.</p>
+    <div id="header-practice">
+      <h2 id="practice-title">Practice Mode</h2>
+      <p>Here, you can practice specific topics at your own pace.</p>
+    </div>
 
-    <div class="practice-topics">
+    <div class="main-selection">
 
-      <h3 class="prac-title">Practice</h3>
+    <div class="search-container">
 
-        <div class="button-row">
-          <button class="topic-btn">Algebra</button>
-          <button class="topic-btn">Geometry</button>
-          <button class="topic-btn">Number Theory</button>
-          <button class="topic-btn">Probability</button>
-        </div>
+      <input type="text" id="searchInput" placeholder="Search topics or skills...">
 
-      </div>
+      <div id="searchResults"></div>
+
+    </div>
+
+    <div class="bottom-settings">
 
       <div class="difficulty">
 
-        <h3 class="prac-title">Choose Difficulty</h3>
+        <h3 class="prac-title">Difficulty</h3>
 
         <div class="button-row">
           <button class="difficulty-btn">Easy</button>
@@ -172,21 +172,41 @@
 
       </div>
 
-      <div class="length-practice">
+      <div class="question-setting">
 
-        <h3 class="prac-title">Choose Length</h3>
+        <h3 class="prac-title">Number of Questions</h3>
 
-        <div class="button-row">
-          <button class="length-btn">5 Questions</button>
-          <button class="length-btn">10 Questions</button>
-          <button class="length-btn">20 Questions</button>
-        </div>
+        <h4 id="question-amount">5</h4>
+
+        <input
+          type="range"
+          id="questionRange"
+          min="5"
+          max="25"
+          step="5"
+          value="10"
+        />
+
+      </div>
+
+      <div class="choice-type">
+
+        <h3 class="prac-title">Question Type</h3>
+ 
+        <select id="questionType">
+          <option value="multiple-choice">Multiple Choice</option>
+          <option value="short-answer">Short Answer</option>
+        </select>
 
       </div>
 
       <button id="start-practice">Start Practice</button>
 
     </div>
+
+    </div>
+
+  </div>
 
 
 <!----------------------------------History Container-------------------------->
@@ -284,6 +304,7 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0"></script>
   <script type="module" src="../js/dashboard.js"></script>
+  
 
   <script type="module">
     import { requireLogin, logoutUser } from "../js/auth.js";
@@ -410,6 +431,41 @@
       });
     });
 
+  </script>
+
+  <script type="module">
+    import { topics } from "../data/topics.js";
+
+    const input = document.getElementById("searchInput");
+    const results = document.getElementById("searchResults");
+
+    function showTopics(value = "") {
+      results.innerHTML = "";
+
+      const matches = topics
+        .filter(topic => topic.toLowerCase().includes(value.toLowerCase()))
+        .slice(0, 5);
+
+      matches.forEach(topic => {
+        const div = document.createElement("div");
+        div.classList.add("result-item");
+        div.textContent = topic;
+
+        div.addEventListener("click", () => {
+          input.value = topic;
+          localStorage.setItem("selectedTopic", topic);
+          results.innerHTML = "";
+        });
+
+        results.appendChild(div);
+      });
+    }
+
+    showTopics();
+
+    input.addEventListener("input", () => {
+      showTopics(input.value);
+    });
   </script>
 
 </body>
