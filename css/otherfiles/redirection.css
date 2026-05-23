@@ -1,8 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Poiret+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+html, body { font-family: 'Manrope', sans-serif; }
 
 body{
-  background-image: url("../images/redirection-bg.png");
+  background-image: url("../../images/redirection-bg.png");
   margin: 0; 
   display: flex;
   justify-content: center;
@@ -10,7 +11,7 @@ body{
 }
 
 #container{
-  background-image: url("../images/redirection.png");
+  background-image: url("../../images/redirection.png");
   border: 3px Ridge #2942d0;
   border-radius: 20px;
   width: 600px;
@@ -26,7 +27,7 @@ body{
   font-weight: 700;
   font-size: 50px;
   color: #1b1b6d;
-  font-family: "Funnel Display", sans-serif;
+  font-family: 'Poppins', sans-serif;
   text-align: center;
   text-shadow:
     0 0 5px #accfdb,
@@ -39,7 +40,7 @@ body{
   font-weight: 700;
   font-size: 35px;
   color: #2b2c82;
-  font-family: "Poiret One", sans-serif;
+  font-family: 'Poppins', sans-serif;
   text-align: center;
   padding-top: 10px;
 }
@@ -53,7 +54,7 @@ body{
 
 input{
   font-size: 18px;
-  font-family: "Funnel Display", sans-serif;
+  font-family: 'Manrope', sans-serif;
   border-radius: 10px;
   background-color: #ffffff;
   padding: 10px 10px 10px;
@@ -79,7 +80,7 @@ input{
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  font-family: "Funnel Display", sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 17px;
   padding: 14px 20px;
 }
@@ -101,7 +102,7 @@ input{
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    font-family: "Funnel Display", sans-serif;
+    font-family: 'Manrope', sans-serif;
     font-size: 17px;
 }
 

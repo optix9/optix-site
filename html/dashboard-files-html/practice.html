@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice</title>
+    <link rel="stylesheet" href="../../css/dashboard-files/global.css">
+    <link rel="stylesheet" href="../../css/dashboard-files/practice.css">
+</head>
+
+<body>
+
+<div id="dashboard-container">
+  <div id="sidebar-1">
+      <h2>Optix</h2>
+      <ul>
+        <li id="dashboard-li" onclick="location.href='dashboard.html'">🏠Dashboard</li>
+        <li id="practice" class="current" onclick="location.href='practice.html'">📝Practice</li>
+        <li id="challenge" onclick="location.href='challenge.html'">🎮Challenge</li>
+        <li id="history" onclick="location.href='history.html'">📜History</li>
+        <li id="achievements" onclick="location.href='achievements.html'">🏆Achievements</li>
+        <li id="profile" onclick="location.href='profile.html'">🪪Profile</li>
+        <li id="logout">🚪Logout</li>
+      </ul>
+    </div>
+<div id="practice-container">
+
+    <div id="header-practice">
+      <h2 id="practice-title">Practice Mode</h2>
+      <p>Here, you can practice specific topics at your own pace.</p>
+    </div>
+
+    <div class="main-selection">
+
+    <div class="search-container">
+
+      <input type="text" id="searchInput" placeholder="Search topics or skills...">
+
+      <div id="searchResults"></div>
+
+    </div>
+
+    <div class="bottom-settings">
+
+      <div class="difficulty">
+
+        <h3 class="prac-title">Difficulty</h3>
+
+        <div class="button-row">
+          <button class="difficulty-btn">Easy</button>
+          <button class="difficulty-btn">Medium</button>
+          <button class="difficulty-btn">Hard</button>
+        </div>
+
+      </div>
+
+      <div class="question-setting">
+
+        <h3 class="prac-title">Number of Questions</h3>
+
+        <h4 id="question-amount">5</h4>
+
+        <input
+          type="range"
+          id="questionRange"
+          min="5"
+          max="25"
+          step="5"
+          value="10"
+        />
+
+      </div>
+
+      <div class="choice-type">
+
+        <h3 class="prac-title">Question Type</h3>
+ 
+        <select id="questionType">
+          <option value="multiple-choice">Multiple Choice</option>
+          <option value="short-answer">Short Answer</option>
+        </select>
+
+      </div>
+
+      <button id="start-practice">Start Practice</button>
+
+    </div>
+
+    </div>
+
+  </div>
+</div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script type="module">
+    import { requireLogin, logoutUser } from "../../js/auth.js";
+
+    requireLogin();
+
+    const logoutBtn = document.getElementById('logout');
+
+    if (logoutBtn) {
+      logoutBtn.addEventListener("click", async () => {
+        await logoutUser();
+        window.location.href = "../login.html";
+      });
+    }
+
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const topicBtns = document.querySelectorAll('.topic-btn');
+      const difficultyBtns = document.querySelectorAll('.difficulty-btn');
+      const lengthBtns = document.querySelectorAll('.length-btn');
+      const startPracticeBtn = document.getElementById('start-practice');
+
+      localStorage.removeItem('selectedTopic');
+      localStorage.removeItem('selectedDifficulty');
+      localStorage.removeItem('selectedLength');
+
+      function setActive(btnGroup, activeBtn) {
+        btnGroup.forEach(btn => btn.classList.remove('active'));
+        activeBtn.classList.add('active');
+      }
+
+      topicBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          setActive(topicBtns, btn);
+          localStorage.setItem('selectedTopic', btn.textContent.trim());
+        });
+      });
+
+      difficultyBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          setActive(difficultyBtns, btn);
+          localStorage.setItem('selectedDifficulty', btn.textContent.trim());
+        });
+      });
+
+      lengthBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          setActive(lengthBtns, btn);
+          const lengthMatch = btn.textContent.match(/\d+/);
+          const lengthValue = lengthMatch ? parseInt(lengthMatch[0]) : null;
+          if (lengthValue) {
+            localStorage.setItem('selectedLength', lengthValue);
+          }
+        });
+      });
+
+      if (startPracticeBtn) {
+        startPracticeBtn.addEventListener('click', () => {
+          window.location.href = '../quiz.html';
+        });
+      }
+    });
+  </script>
+
+  <script type="module">
+    import { topics } from "../../data/topics.js";
+
+    const input = document.getElementById("searchInput");
+    const results = document.getElementById("searchResults");
+
+    function showTopics(value = "") {
+      results.innerHTML = "";
+
+      const matches = topics
+        .filter(topic => topic.toLowerCase().includes(value.toLowerCase()))
+        .slice(0, 5);
+
+      matches.forEach(topic => {
+        const div = document.createElement("div");
+        div.classList.add("result-item");
+        div.textContent = topic;
+
+        div.addEventListener("click", () => {
+          input.value = topic;
+          localStorage.setItem("selectedTopic", topic);
+          results.innerHTML = "";
+        });
+
+        results.appendChild(div);
+      });
+    }
+
+    showTopics();
+
+    input.addEventListener("input", () => {
+      showTopics(input.value);
+    });
+  </script>
+</body>
+
+</html>

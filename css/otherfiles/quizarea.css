@@ -1,5 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+html, body { font-family: 'Manrope', sans-serif; }
+
 .roadmap-header h1 {
-  font-family: "Funnel Display", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 800;
   color: #6fe7e0;
   font-size: 30px;
@@ -7,7 +11,7 @@
 }
 
 .roadmap-header h3 {
-  font-family: "Funnel Display", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 400;
   color: #9ccbd3;
   font-size: 16px;
@@ -56,7 +60,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Funnel Display", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 800;
   font-size: 22px;
   margin-bottom: 12px;
@@ -105,7 +109,7 @@
 }
 
 .quiz-name {
-  font-family: "Funnel Display", sans-serif;
+  font-family: 'Poppins', sans-serif;
   color: #9ccbd3;
   font-size: 14px;
   text-align: center;

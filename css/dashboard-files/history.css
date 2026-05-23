@@ -1,5 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Poiret+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+html, body { font-family: 'Manrope', sans-serif; }
 
 #history-container {
   display: flex;
@@ -13,7 +14,7 @@
 }
 
 #history-container h1 {
-  font-family: "Funnel Display", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 800;
   color: #6fe7e0;
   margin: 0 0 10px 0;
@@ -21,7 +22,7 @@
 }
 
 #quiz-card h1{
-  font-family: "Funnel Display", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 800;
   color: #6fe7e0;
   margin: 0 0 10px 0;
@@ -56,7 +57,7 @@
 }
 
 #topleft-history h3 {
-  font-family: "Funnel Display", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 500;
   color: #a9d9e3;
   font-size: 1rem;
@@ -68,7 +69,7 @@
 #topright-history h3, 
 #recent-quizzes-history h3, 
 #graph h3 {
-  font-family: "Funnel Display", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 700;
   color: #6fe7e0;
   font-size: 1.2rem;
@@ -81,7 +82,7 @@
   border-spacing: 0;
   border-radius: 10px;
   overflow: hidden;
-  font-family: "Funnel Display", sans-serifs;
+  font-family: 'Manrope', sans-serif;
 }
 
 #history-table th {
@@ -90,6 +91,7 @@
   padding: 12px;
   text-align: left;
   font-size: 0.8rem;
+  font-family: 'Poppins', sans-serif;
 }
 
 #history-table td {
@@ -97,7 +99,7 @@
   color: #d4f1f7;
   padding: 12px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  font-family: "Rajdhani", sans-serif;
+  font-family: 'Manrope', sans-serif;
 }
 
 #show-more {
@@ -110,7 +112,7 @@
   border-radius: 8px;
   font-weight: 700;
   cursor: pointer;
-  font-family: "Funnel Display", sans-serif;
+  font-family: 'Manrope', sans-serif;
 }
 
 #show-more:hover{
@@ -138,13 +140,14 @@
 }
 
 .quizc h3 {
+  font-family: 'Poppins', sans-serif;
   font-size: 0.95rem;
   color: #6fe7e0;
   margin: 0 0 4px 0;
 }
 
 .quizc p {
-  font-family: "Rajdhani", sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 0.85rem;
   margin: 2px 0;
 }
@@ -166,7 +169,7 @@ canvas {
 #quiz-card-2,
 #quiz-card-3
 {
-  font-family: "Funnel Display", sans-serif;
+  font-family: 'Manrope', sans-serif;
   margin: 2px 0;
   font-size: 15px;
   color: #ffffff;

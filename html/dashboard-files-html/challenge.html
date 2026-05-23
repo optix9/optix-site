@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenges</title>
+    <link rel="stylesheet" href="../../css/dashboard-files/global.css">
+    <link rel="stylesheet" href="../../css/dashboard-files/challenge.css">
+</head>
+
+<body>
+<div id="dashboard-container">
+  <div id="sidebar-1">
+      <h2>Optix</h2>
+      <ul>
+        <li id="dashboard-li" onclick="location.href='dashboard.html'">🏠Dashboard</li>
+        <li id="practice" onclick="location.href='practice.html'">📝Practice</li>
+        <li id="challenge" class="current" onclick="location.href='challenge.html'">🎮Challenge</li>
+        <li id="history" onclick="location.href='history.html'">📜History</li>
+        <li id="achievements" onclick="location.href='achievements.html'">🏆Achievements</li>
+        <li id="profile" onclick="location.href='profile.html'">🪪Profile</li>
+        <li id="logout">🚪Logout</li>
+      </ul>
+    </div>
+</div>
+
+  <script type="module">
+    import { requireLogin, logoutUser } from "../../js/auth.js";
+
+    requireLogin();
+
+    const logoutBtn = document.getElementById('logout');
+
+    if (logoutBtn) {
+      logoutBtn.addEventListener("click", async () => {
+        await logoutUser();
+        window.location.href = "../login.html";
+      });
+    }
+
+  </script>
+</body>
+
+</html>

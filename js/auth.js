@@ -49,7 +49,7 @@ export async function loginWithGoogle(){
       name: user.displayName || "",
       email: user.email || "",
       photoURL: user.photoURL || "",
-      createdAt: serverTimestamp()
+      lastLoginAt: serverTimestamp()
     },
     { merge: true }
   );
@@ -64,7 +64,7 @@ export async function logoutUser() {
 export function requireLogin() {
   onAuthStateChanged(auth, user => {
     if (!user) {
-      window.location.href = "./login.html";
+      window.location.href = window.location.pathname.includes("dashboard-files-html") ? "../login.html" : "./login.html";
     }
   });
 }
@@ -72,7 +72,7 @@ export function requireLogin() {
 export function redirectIfLoggedIn() {
   onAuthStateChanged(auth, user => {
     if (user) {
-      window.location.href = "./dashboard.html";
+      window.location.href = "./dashboard-files-html/dashboard.html";
     }
   });
 }
@@ -95,7 +95,7 @@ if (loginBtn) {
 
     try {
       await loginWithEmail(email, password);
-      window.location.href = "dashboard.html";
+      window.location.href = "dashboard-files-html/dashboard.html";
     } catch (error) {
       showAuthMessage(error.message);
     }
@@ -106,7 +106,7 @@ if (googleLoginBtn) {
   googleLoginBtn.addEventListener("click", async () => {
     try {
       await loginWithGoogle();
-      window.location.href = "dashboard.html";
+      window.location.href = "dashboard-files-html/dashboard.html";
     } catch (error) {
       showAuthMessage(error.message);
     }
@@ -124,7 +124,7 @@ if (signupBtn){
 
   try {
     await signupWithEmail(name, email, password);
-    window.location.href = "dashboard.html";
+    window.location.href = "dashboard-files-html/dashboard.html";
     } catch (error) {
       showAuthMessage(error.message);
     }
@@ -135,7 +135,7 @@ if (googleSignupBtn){
   googleSignupBtn.addEventListener("click", async () =>{
     try {
       await loginWithGoogle();
-      window.location.href = "dashboard.html";
+      window.location.href = "dashboard-files-html/dashboard.html";
     } catch (error) {
       showAuthMessage(error.message);
     }

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Optix</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel='stylesheet' href="../../css/dashboard-files/global.css">
+  <link rel='stylesheet' href="../../css/dashboard-files/dashboard.css">
+</head>
+
+
+<body>
+
+  <!----------------------------------Main Dashboard Container-------------------------->
+
+  <div id="dashboard-container">
+
+    <div id="sidebar-1">
+      <h2>Optix</h2>
+      <ul>
+        <li id="dashboard-li" class="current" onclick="location.href='dashboard.html'">🏠Dashboard</li>
+        <li id="practice" onclick="location.href='practice.html'">📝Practice</li>
+        <li id="challenge" onclick="location.href='challenge.html'">🎮Challenge</li>
+        <li id="history" onclick="location.href='history.html'">📜History</li>
+        <li id="achievements" onclick="location.href='achievements.html'">🏆Achievements</li>
+        <li id="profile" onclick="location.href='profile.html'">🪪Profile</li>
+        <li id="logout">🚪Logout</li>
+      </ul>
+    </div>
+
+    <div class="header-div-2 change-class">
+        <h1 id="welcome-text">Welcome!</h1>
+
+        <div class="p-text-header">
+          <p class="badge" id="xp-level">XP: __</p>
+          <p class="badge" id="streakptag">Streak: __d</p>
+        </div>
+
+    </div>
+
+    <div class="learning-path-3 change-class">
+
+      <div class="level-selector">
+
+        <div class="level-top">
+
+          <div class="currentlevel">
+            <h3>Level 1: Algebra Foundations</h3>
+            <p>Current Topic: Algebra Basics</p>
+          </div>
+
+          <button id="all-levels">▽</button>
+
+        </div>
+
+        <div id="levels-dropdown" class="hidden">
+
+          <div class="leveldiv current-level-class" id="level1">
+            <h3>Level 1: Algebra Foundations</h3>
+          </div>
+
+          <div class="leveldiv locked-level-class" id="level2">
+            <h3>Level 2: Geometry Foundations</h3>
+          </div>
+
+          <div class="leveldiv locked-level-class" id="level3">
+            <h3>Level 3: Number Theory Foundations</h3>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div id="roadmap-scroll">
+    
+        <div class="roadmap-topic completed" data-id="addition-basics" data-topic="Addition Basics">
+          <div class="node">1</div>
+          <div class="quiz-name">Addition Basics</div>
+        </div>
+
+        <div class="roadmap-topic current" data-id="subtraction-basics" data-topic="Subtraction Basics">
+          <div class="node">2</div>
+          <div class="quiz-name">Subtraction Basics</div>
+        </div>
+
+        <div class="roadmap-topic upcoming" data-id="harder-arithmetic" data-topic="Harder Arithmetic">
+          <div class="node">3</div>
+          <div class="quiz-name">Harder Arithmetic</div>
+        </div>
+
+        <div class="roadmap-topic upcoming" data-id="word-problems" data-topic="Word Problems">
+          <div class="node">4</div>
+          <div class="quiz-name">Word Problems</div>
+        </div>
+
+        <div class="roadmap-topic upcoming" data-id="2-digit-place-value" data-topic="2-Digit Place Value">
+          <div class="node">5</div>
+          <div class="quiz-name">2-Digit Place Value</div>
+        </div>
+
+        <div class="seperator">
+          <div class="node">Unit 2</div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="stats-main-4 change-class">
+      <h3>Stats</h3>
+      <p>Quizzes Taken: __</p>
+      <p>Overall Accuracy: __</p>
+    </div>
+
+    <div class="recent-activity-main-5 change-class"> 
+      <h3>Recent Activity</h3>
+      <p>Algebra - </p>
+      <p>Geometry - </p>
+      <p>Number Theory - </p>
+    </div>
+
+    <footer class="action-footer-6">
+
+        <div class="action-cards">
+
+          <div class="card change-class">
+            <h3>Practice Topics</h3>
+            <p>Practice whatever topic you want!</p>
+          </div>
+
+          <div class="card change-class">
+            <h3>Challenge Quiz</h3>
+            <p>Up for a challenge?</p>
+          </div>
+
+        </div>
+
+    </footer>
+
+  </div>
+
+   <!----------------------------------JAVASCRIPT------------------------------->
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script type="module" src="../../js/dashboard.js"></script>
+  
+
+  <script type="module">
+    import { requireLogin, logoutUser } from "../../js/auth.js";
+
+    requireLogin();
+
+    const logoutBtn = document.getElementById('logout');
+
+    if (logoutBtn) {
+      logoutBtn.addEventListener("click", async () => {
+        await logoutUser();
+        window.location.href = "../login.html";
+      });
+    }
+
+  </script>
+
+  <script>
+    $("#levels-dropdown").hide();
+
+    $("#all-levels").click(function () {
+      $("#levels-dropdown").slideToggle(200);
+      $(this).text(function (i, text) {
+        return text === "▽" ? "△" : "▽";
+      });
+    });
+  </script>
+
+</body>
+
+
+</html>

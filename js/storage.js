@@ -72,6 +72,8 @@ export async function saveUserProgress(progress) {
 }
 
 export async function saveQuizResult(result) {
+  streakUpdate();
+
   try {
     const userId = await getUserId();
 
@@ -79,8 +81,6 @@ export async function saveQuizResult(result) {
       ...result,
       createdAt: serverTimestamp()
     });
-
-    streakUpdate();
     console.log("Saved to Firebase:", result);
   } catch (error) {
     console.error("Failed to save quiz result to Firebase:", error);
@@ -101,7 +101,7 @@ export async function getRecentResults() {
     return snapshot.docs.map(doc => doc.data());
   } catch (error) {
     console.error("Failed to load recent results:", error);
-    return [];
+    return JSON.parse(localStorage.getItem("quizHistory")) || [];
   }
 }
 
@@ -129,5 +129,3 @@ export function streakUpdate(){
   localStorage.setItem(lastPlayedKey, today);
   return streak;
 }
-
-
