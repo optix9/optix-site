@@ -9,138 +9,349 @@
   <link rel='stylesheet' href="../../css/dashboard-files/dashboard.css">
 </head>
 
-
 <body>
-
-  <!----------------------------------Main Dashboard Container-------------------------->
 
   <div id="dashboard-container">
 
-    <div id="sidebar-1">
-      <h2>Optix</h2>
-      <ul>
-        <li id="dashboard-li" class="current" onclick="location.href='dashboard.html'">🏠Dashboard</li>
-        <li id="practice" onclick="location.href='practice.html'">📝Practice</li>
-        <li id="challenge" onclick="location.href='challenge.html'">🎮Challenge</li>
-        <li id="history" onclick="location.href='history.html'">📜History</li>
-        <li id="achievements" onclick="location.href='achievements.html'">🏆Achievements</li>
-        <li id="profile" onclick="location.href='profile.html'">🪪Profile</li>
-        <li id="logout">🚪Logout</li>
-      </ul>
-    </div>
+    <!-------------------------SIDEBAR--------------------------------->
 
-    <div class="header-div-2 change-class">
-        <h1 id="welcome-text">Welcome!</h1>
+    <aside class="sidebar">
 
-        <div class="p-text-header">
-          <p class="badge" id="xp-level">XP: __</p>
-          <p class="badge" id="streakptag">Streak: __d</p>
+      <div class="sidebar-logo">
+        <img src="../../images/optix-logo.png">
+        <h2>OPTIX</h2>
+      </div>
+
+      <div id="sidebar-1">
+        <ul>
+          <li id="dashboard-li" class="current" onclick="location.href='dashboard.html'">🏠Dashboard</li>
+          <li id="practice" onclick="location.href='practice.html'">📝Practice</li>
+          <li id="challenge" onclick="location.href='challenge.html'">🎮Challenge</li>
+          <li id="history" onclick="location.href='history.html'">📜History</li>
+          <li id="achievements" onclick="location.href='achievements.html'">🏆Achievements</li>
+          <li id="leaderboard" onclick="location.href='leaderboard.html'">🏆Leaderboard</li>
+          <li id="profile" onclick="location.href='profile.html'">🪪Profile</li>
+          <li id="settings" onclick="location.href='settings.html'">⚙️Settings</li>
+          <li id="logout" onclick="location.href='logout.html'">🚪Logout</li>
+        </ul>
+      </div>
+
+      <div class="sidebar-user">
+
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-avatar"></div>
+          <h3>Optix User</h3>
+          <p>Level 6</p>
         </div>
 
-    </div>
-
-    <div class="learning-path-3 change-class">
-
-      <div class="level-selector">
-
-        <div class="level-top">
-
-          <div class="currentlevel">
-            <h3>Level 1: Algebra Foundations</h3>
-            <p>Current Topic: Algebra Basics</p>
-          </div>
-
-          <button id="all-levels">▽</button>
-
-        </div>
-
-        <div id="levels-dropdown" class="hidden">
-
-          <div class="leveldiv current-level-class" id="level1">
-            <h3>Level 1: Algebra Foundations</h3>
-          </div>
-
-          <div class="leveldiv locked-level-class" id="level2">
-            <h3>Level 2: Geometry Foundations</h3>
-          </div>
-
-          <div class="leveldiv locked-level-class" id="level3">
-            <h3>Level 3: Number Theory Foundations</h3>
-          </div>
-
+        <div class="sidebar-xp-bar"></div>
+      
+        <div class="sidebar-stats">
+          <div class="sidebar-stat">Streak</div>
+          <div class="sidebar-stat">Points</div>
         </div>
 
       </div>
 
-      <div id="roadmap-scroll">
+    </aside>
+
+    <!----------------------------MAIN CONTENT--------------------------------->
+
+    <div class="main-content">
+
+      <!--TOPBAR-->
+
+      <header class="header-div-2">
+
+        <div class="topbar-left">
+          <h1 id="welcome-text">Welcome!</h1>
+          <h3>Get back to learning!</h3>
+        </div>
+
+        <div class="topbar-right">
+          <div class="topbar-stat">🔥 Streak</div>
+          <div class="topbar-stat">💎 Points</div>
+          <div>🔔</div>
+        </div>
+
+      </header>
+
+      <!--CONTENT-->
+
+      <div class="content-area">
+
+        <div class="center-column">
+
+          <!---------------------------- STATS ROW------------------------------->
+
+          <div class="stats-row">
+
+            <div class="stat-card">
+              <img src="../../images/quizlogo.png" class="stat-card-icon">
+              <h2>Quizzes Taken</h2>
+              <h1>136</h1>
+              <h2>Total Attempts</h2>
+            </div>
+
+            <div class="stat-card">
+              <img src="../../images/scorelogo.png" class="stat-card-icon">
+              <h2>Average Score</h2>
+              <h1>85%</h1>
+              <h2>Amazing!</h2>
+              <div class="stat-card-ring"></div>
+            </div>
+
+            <div class="stat-card">
+              <img src="../../images/masteredlogo.png" class="stat-card-icon">
+              <h2>Topics Mastered</h2>
+              <h1>12</h1>
+              <h2>Keep Going!</h2>
+              <div class="stat-card-ring"></div>
+            </div>
+
+          </div>
+
+          <!----------------------------ROADMAP------------------------------>
+
+          <section class="learning-path-3 change-class">
+
+            <div class="level-selector">
+
+              <div class="level-top">
+
+                <div class="currentlevel">
+                  <h3>Level 1: Algebra Foundations</h3>
+                  <p>Current Topic: Algebra Basics</p>
+                </div>
+
+                <button id="all-levels">▽</button>
+
+              </div>
+
+              <div id="levels-dropdown" class="hidden">
+
+                <div class="leveldiv current-level-class" id="level1">
+                  <h3>Level 1: Algebra Foundations</h3>
+                </div>
+
+                <div class="leveldiv locked-level-class" id="level2">
+                  <h3>Level 2: Geometry Foundations</h3>
+                </div>
+
+                <div class="leveldiv locked-level-class" id="level3">
+                  <h3>Level 3: Number Theory Foundations</h3>
+                </div>
+ 
+              </div>
+
+            </div>
+
+            <div id="roadmap-scroll">
     
-        <div class="roadmap-topic completed" data-id="addition-basics" data-topic="Addition Basics">
-          <div class="node">1</div>
-          <div class="quiz-name">Addition Basics</div>
-        </div>
+              <div class="roadmap-topic completed" data-id="addition-basics" data-topic="Addition Basics">
+                <div class="node">1</div>
+                <div class="quiz-name">Addition Basics</div>
+              </div>
 
-        <div class="roadmap-topic current" data-id="subtraction-basics" data-topic="Subtraction Basics">
-          <div class="node">2</div>
-          <div class="quiz-name">Subtraction Basics</div>
-        </div>
+              <div class="roadmap-topic current" data-id="subtraction-basics" data-topic="Subtraction Basics">
+                <div class="node">2</div>
+                <div class="quiz-name">Subtraction Basics</div>
+              </div>
 
-        <div class="roadmap-topic upcoming" data-id="harder-arithmetic" data-topic="Harder Arithmetic">
-          <div class="node">3</div>
-          <div class="quiz-name">Harder Arithmetic</div>
-        </div>
+              <div class="roadmap-topic upcoming" data-id="harder-arithmetic" data-topic="Harder Arithmetic">
+                <div class="node">3</div>
+                <div class="quiz-name">Harder Arithmetic</div>
+              </div>
 
-        <div class="roadmap-topic upcoming" data-id="word-problems" data-topic="Word Problems">
-          <div class="node">4</div>
-          <div class="quiz-name">Word Problems</div>
-        </div>
+              <div class="roadmap-topic upcoming" data-id="word-problems" data-topic="Word Problems">
+                <div class="node">4</div>
+                <div class="quiz-name">Word Problems</div>
+              </div>
 
-        <div class="roadmap-topic upcoming" data-id="2-digit-place-value" data-topic="2-Digit Place Value">
-          <div class="node">5</div>
-          <div class="quiz-name">2-Digit Place Value</div>
-        </div>
+              <div class="roadmap-topic upcoming" data-id="2-digit-place-value" data-topic="2-Digit Place Value">
+                <div class="node">5</div>
+                <div class="quiz-name">2-Digit Place Value</div>
+              </div>
 
-        <div class="seperator">
-          <div class="node">Unit 2</div>
-        </div>
+              <div class="seperator">
+                <div class="node">Unit 2</div>
+              </div>
+ 
+            </div>
 
-      </div>
+          </section>
 
-    </div>
+          <!----------------------------RECOMMENDED TOPICS------------------------------>
 
-    <div class="stats-main-4 change-class">
-      <h3>Stats</h3>
-      <p>Quizzes Taken: __</p>
-      <p>Overall Accuracy: __</p>
-    </div>
+          <div class="recommended-section">
 
-    <div class="recent-activity-main-5 change-class"> 
-      <h3>Recent Activity</h3>
-      <p>Algebra - </p>
-      <p>Geometry - </p>
-      <p>Number Theory - </p>
-    </div>
+            <div class="recommended-header">
+              <div>
+                <h2>Recommended for You</h2>
+                <h3>Based on your progress and performance</h3>
+              </div>
+            </div>
 
-    <footer class="action-footer-6">
+            <div class="recommended-grid">
 
-        <div class="action-cards">
+              <div class="topic-card">
+                <div class="topic-card-icon">½</div>
+                <div class="topic-card-meta">
+                  <span>Topic 1</span>
+                  <span>N questions</span>
+                </div>
+                <button class="cta-button">Practice</button>
+              </div>
 
-          <div class="card change-class">
-            <h3>Practice Topics</h3>
-            <p>Practice whatever topic you want!</p>
+              <div class="topic-card">
+                <div class="topic-card-icon">x²</div>
+                <div class="topic-card-meta">
+                  <span>Topic 2</span>
+                  <span>N questions</span>
+                </div>
+                <button class="cta-button">Practice</button>
+              </div>
+
+              <div class="topic-card">
+                <div class="topic-card-icon">√x</div>
+                <div class="topic-card-meta">
+                  <span>Topic 3</span>
+                  <span>N questions</span>
+                </div>
+                <button class="cta-button">Practice</button>
+              </div>
+
+              <div class="topic-card">
+                <div class="topic-card-icon">📊</div>
+                <div class="topic-card-meta">
+                  <span>Topic 4</span>
+                  <span>N questions</span>
+                </div>
+                <button class="cta-button">Practice</button>
+              </div>
+
+            </div>
           </div>
 
-          <div class="card change-class">
-            <h3>Challenge Quiz</h3>
-            <p>Up for a challenge?</p>
+
+        </div> <!-- End of center column-->
+
+        <!----------------------------RIGHT COLUMN------------------------------>
+
+        <aside class="right-panel">
+
+          <div class="daily-goal-card"> <!--DAILY GOAL-->
+
+            <div class="daily-goal-header">
+              <span>Daily Goal</span>
+              <span>Edit Goal</span>
+            </div>
+
+            <div class="daily-goal-body">
+              <div class="daily-goal-ring">75%</div>
+              <div class="daily-goal-info">
+                <span>Goal Progress</span>
+                <span>15 / 20 quizzes</span>
+                <span>Keep Pushing! 🔥</span>
+              </div>
+            </div>
+
           </div>
 
-        </div>
+          <div class="recent-activity-card"> <!----RECENT ACTIVITY---->
 
-    </footer>
+            <div class="card-header">
+              <span>Recent Activity</span>
+              <span>View All</span>
+            </div>
 
-  </div>
+            <div class="activity-list">
 
-   <!----------------------------------JAVASCRIPT------------------------------->
+              <div class="activity-item">
+                <div class="activity-check">✓</div>
+                <div class="activity-info">
+                  <span>Activity 1</span>
+                  <span>Completed</span>
+                </div>
+                <div class="activity-time">2h ago</div>
+              </div>
+
+              <div class="activity-item">
+                <div class="activity-check">✓</div>
+                <div class="activity-info">
+                  <span>Activity 2</span>
+                  <span>Completed</span>
+                </div>
+                <div class="activity-time">5h ago</div>
+              </div>
+
+              <div class="activity-item">
+                <div class="activity-check">✓</div>
+                <div class="activity-info">
+                  <span>Activity 3</span>
+                  <span>Completed</span>
+                </div>
+                <div class="activity-time">1d ago</div>
+              </div>
+
+              <div class="activity-item">
+                <div class="activity-check">✓</div>
+                <div class="activity-info">
+                  <span>Activity 4</span>
+                  <span>Completed</span>
+                </div>
+                <div class="activity-time">2d ago</div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="achievements-card"> <!----ACHIEVEMENTS---->
+            <div class="card-header">
+              <span>Achievements</span>
+              <span>View All</span>
+            </div>
+
+            <div class="achievements-grid">
+
+              <div class="achievement-item">
+                <div class="achievement-badge">⚡</div>
+                <div class="achievement-label">
+                  <span>Badge 1</span>
+                  <span>Description</span>
+                </div>
+              </div>
+
+              <div class="achievement-item">
+                <div class="achievement-badge">⭐</div>
+                <div class="achievement-label">
+                  <span>Badge 2</span>
+                  <span>Description</span>
+                </div>
+              </div>
+
+              <div class="achievement-item">
+                <div class="achievement-badge">🔥</div>
+                <div class="achievement-label">
+                  <span>Badge 3</span>
+                  <span>Description</span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </aside>
+
+      </div> <!-- End of content area -->
+
+    </div> <!-- End of main content-->
+
+  </div> <!-- End of dashboard container-->
+
+  <!----------------------------------JAVASCRIPT------------------------------->
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script type="module" src="../../js/dashboard.js"></script>
