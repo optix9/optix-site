@@ -11,102 +11,78 @@
 
 <body>
 
-<div id="dashboard-container">
-  <div id="sidebar-1">
-      <h2>Optix</h2>
-      <ul>
-        <li id="dashboard-li" onclick="location.href='dashboard.html'">🏠Dashboard</li>
-        <li id="practice" onclick="location.href='practice.html'">📝Practice</li>
-        <li id="challenge" onclick="location.href='challenge.html'">🎮Challenge</li>
-        <li id="history" class="current" onclick="location.href='history.html'">📜History</li>
-        <li id="achievements" onclick="location.href='achievements.html'">🏆Achievements</li>
-        <li id="profile" onclick="location.href='profile.html'">🪪Profile</li>
-        <li id="logout">🚪Logout</li>
-      </ul>
-    </div>
-<div id="history-container">
+  <aside class="sidebar">
 
-        <h1>History</h1>
-        
-        <div id="top-container">
+      <div class="sidebar-logo">
+        <img src="../../images/optix-logo.png">
+        <h2>OPTIX</h2>
+      </div>
 
-          <div id="topleft-history">
-            <h1>Overall Statistics</h1>
-            <h3 id="avgscore">Average Score: </h3>
-            <h3 id="bestscore">Best Score: </h3>
-            <h3 id="xp">XP: </h3>
-            <h3 id="hardesttopic">Hardest Topic: </h3>
-            <h3 id="quizestaken">Quizzes Taken: </h3>
-            <h3 id="currentstreak">Current Streak:  </h3>
-            <h3 id="longeststreak">Longest Streak:  </h3>
-          </div>
+      <div id="sidebar-1">
+        <ul>
+          <li id="dashboard-li" onclick="location.href='dashboard.html'">🏠Dashboard</li>
+          <li id="practice" onclick="location.href='practice.html'">📝Practice</li>
+          <li id="challenge" onclick="location.href='challenge.html'">🎮Challenge</li>
+          <li id="history" class="current" onclick="location.href='history.html'">📜History</li>
+          <li id="achievements" onclick="location.href='achievements.html'">🏆Achievements</li>
+          <li id="leaderboard" onclick="location.href='leaderboard.html'">🏆Leaderboard</li>
+          <li id="profile" onclick="location.href='profile.html'">🪪Profile</li>
+          <li id="settings" onclick="location.href='settings.html'">⚙️Settings</li>
+          <li id="logout" onclick="location.href='logout.html'">🚪Logout</li>
+        </ul>
+      </div>
 
-          <div id="topright-history">
-            <h3>All Quizzes</h3>
+      <div class="sidebar-user">
 
-            <table id="history-table">
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Topic</th>
-                  <th>Difficulty</th>
-                  <th>Score</th>
-                </tr>
-              </thead>
-              <tbody id="history-body">
-              <!-- JS inserts rows here -->
-              </tbody>
-            </table>
-
-            <button id="show-more">Show More</button>
-
-          </div>
-
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-avatar"></div>
+          <h3>Optix User</h3>
+          <p>Level 6</p>
         </div>
 
-        <div id="bottom-container">
-          <div id="recent-quizzes-history">
-            <h3>Recent Quizzes</h3>
+        <div class="sidebar-xp-bar"></div>
+      
+        <div class="sidebar-stats"> 
 
-            <div id="quiz-cards-layout">
-
-              <div class="quizc" id="quiz-card">
-
-              </div>
-
-              <div class="quizc" id="quiz-card-2">
-
-              </div>
-
-              <div class="quizc"  id="quiz-card-3">
-
-              </div>
-            
+          <div class="sidebar-stat">
+            <div class="sst">
+              <h1>🔥</h1>
             </div>
-
-            <!--ADD CARDS LIKE THIS USING JS-->
-
-           <!-- <div class="quiz-card">
-              <h3>Most Recent Quiz</h3>
-              <p>Topic: __</p>
-              <p>Difficulty: __</p>
-              <p>Score: __</p>
-              <p>Date: __ </p>
-            </div>  -->
-
+            
+            <div class="est">
+              <h2>24</h2>
+              <h3>Day Streak</h3>
+            </div>
           </div>
 
-          <div id="graph">
-            <h3>Performance Graph</h3>
-            <canvas id="performance-chart"></canvas>
+          <div class="sidebar-stat">
+            <div class="sst">
+              <h1>💎</h1>
+            </div>
+
+            <div class="est">
+              <h2>1,250</h2>
+              <h3>XP</h3>
+            </div>
           </div>
 
         </div>
 
       </div>
 
+  </aside>
+
+  <div id="history-container">
+
+    <div class="hero">
+      <div>
+        <h1> HISTORY MODE</h1>
+        <p>Track your learning journey and progress over time.</p>
+      </div>
+    </div>
+
+
   </div>
-</div>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0"></script>

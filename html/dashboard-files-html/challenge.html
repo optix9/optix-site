@@ -10,19 +10,283 @@
 </head>
 
 <body>
-<div id="dashboard-container">
-  <div id="sidebar-1">
-      <h2>Optix</h2>
-      <ul>
-        <li id="dashboard-li" onclick="location.href='dashboard.html'">🏠Dashboard</li>
-        <li id="practice" onclick="location.href='practice.html'">📝Practice</li>
-        <li id="challenge" class="current" onclick="location.href='challenge.html'">🎮Challenge</li>
-        <li id="history" onclick="location.href='history.html'">📜History</li>
-        <li id="achievements" onclick="location.href='achievements.html'">🏆Achievements</li>
-        <li id="profile" onclick="location.href='profile.html'">🪪Profile</li>
-        <li id="logout">🚪Logout</li>
-      </ul>
+
+<div class="page">
+
+  <div class="content-wrapper">
+
+  <aside class="sidebar">
+
+      <div class="sidebar-logo">
+        <img src="../../images/optix-logo.png">
+        <h2>OPTIX</h2>
+      </div>
+
+      <div id="sidebar-1">
+        <ul>
+          <li id="dashboard-li" onclick="location.href='dashboard.html'">🏠Dashboard</li>
+          <li id="practice" onclick="location.href='practice.html'">📝Practice</li>
+          <li id="challenge" class="current" onclick="location.href='challenge.html'">🎮Challenge</li>
+          <li id="history" onclick="location.href='history.html'">📜History</li>
+          <li id="achievements" onclick="location.href='achievements.html'">🏆Achievements</li>
+          <li id="leaderboard" onclick="location.href='leaderboard.html'">🏆Leaderboard</li>
+          <li id="profile" onclick="location.href='profile.html'">🪪Profile</li>
+          <li id="settings" onclick="location.href='settings.html'">⚙️Settings</li>
+          <li id="logout" onclick="location.href='logout.html'">🚪Logout</li>
+        </ul>
+      </div>
+
+      <div class="sidebar-user">
+
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-avatar"></div>
+          <h3>Optix User</h3>
+          <p>Level 6</p>
+        </div>
+
+        <div class="sidebar-xp-bar"></div>
+      
+        <div class="sidebar-stats"> 
+
+          <div class="sidebar-stat">
+            <div class="sst">
+              <h1>🔥</h1>
+            </div>
+            
+            <div class="est">
+              <h2>24</h2>
+              <h3>Day Streak</h3>
+            </div>
+          </div>
+
+          <div class="sidebar-stat">
+            <div class="sst">
+              <h1>💎</h1>
+            </div>
+
+            <div class="est">
+              <h2>1,250</h2>
+              <h3>XP</h3>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </aside>
+
+  <div class="main-content">
+
+    <div class="center-panel">
+
+      <div class="hero">
+        <div>
+          <h1>⚡ CHALLENGE MODE</h1>
+          <p>Test your skills. Beat the clock. Climb the leaderboard.</p>
+        </div>
+      </div>
+
+      <h2 class="section-label">CHOOSE A CHALLENGE</h2>
+
+      <div class="challenge-cards">
+        <div class="challenge-card">
+          <div class="icon">⏱️</div>
+          <h3>Time Attack</h3>
+          <p>Answer as many questions as you can in 60 seconds!</p>
+          <button>Start</button>
+        </div>
+        <div class="challenge-card">
+          <div class="icon">🚀</div>
+          <h3>Survival</h3>
+          <p>Keep answering correctly as long as you can!</p>
+          <button>Start</button>
+        </div>
+        <div class="challenge-card">
+          <div class="icon">🎯</div>
+          <h3>Accuracy Test</h3>
+          <p>20 questions. How many can you get right?</p>
+          <button>Start</button>
+        </div>
+        <div class="challenge-card">
+          <div class="icon">📅</div>
+          <h3>Daily Challenge</h3>
+          <p>A new challenge every day. Beat it for rewards!</p>
+          <button>Start</button>
+        </div>
+        <div class="challenge-card">
+          <div class="icon">👑</div>
+          <h3>Boss Challenge</h3>
+          <p>Tough questions. Epic rewards. Are you ready?</p>
+          <button>Start</button>
+        </div>
+      </div>
+
+      <div class="bottom-section">
+
+        <div class="custom-challenge">
+          <h2>CUSTOM CHALLENGE</h2>
+
+          <label for="topic">Topic</label>
+          <select id="topic">
+            <option value="">Select a topic</option>
+            <option>Algebra</option>
+            <option>Fractions</option>
+            <option>Geometry</option>
+            <option>Exponents</option>
+            <option>Functions</option>
+            <option>Statistics</option>
+          </select>
+
+          <label for="questions">Questions — <span id="q-count">20</span></label>
+          <input
+            type="range"
+            id="questions"
+            min="5"
+            max="20"
+            step="1"
+            value="20"
+            oninput="document.getElementById('q-count').textContent = this.value"
+          />
+
+          <button class="start-btn">⚡ Start Custom Challenge</button>
+
+        </div>
+
+        <div class="popular-topics">
+          <div class="popular-topics-header">
+            <h2>POPULAR TOPICS</h2>
+            <a href="#">View All</a>
+          </div>
+          <div class="topics-grid">
+            <div class="topic-card">
+              <div class="topic-icon">x²</div>
+              <div>
+                <h4>Algebra</h4>
+                <span>1.2K plays</span>
+              </div>
+            </div>
+            <div class="topic-card">
+              <div class="topic-icon">xⁿ</div>
+              <div>
+                <h4>Exponents</h4>
+                <span>982 plays</span>
+              </div>
+            </div>
+            <div class="topic-card">
+              <div class="topic-icon">a/b</div>
+              <div>
+                <h4>Fractions</h4>
+                <span>1.1K plays</span>
+              </div>
+            </div>
+            <div class="topic-card">
+              <div class="topic-icon">△</div>
+              <div>
+                <h4>Geometry</h4>
+                <span>876 plays</span>
+              </div>
+            </div>
+            <div class="topic-card">
+              <div class="topic-icon">f(x)</div>
+              <div>
+                <h4>Functions</h4>
+                <span>634 plays</span>
+              </div>
+            </div>
+            <div class="topic-card">
+              <div class="topic-icon">📊</div>
+              <div>
+                <h4>Statistics</h4>
+                <span>558 plays</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
     </div>
+
+    <div class="right-panel">
+
+      <div class="stats-section">
+
+        <h2>YOUR CHALLENGE STATS</h2>
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div class="value">87</div>
+            <div class="label">Challenges Completed</div>
+          </div>
+          <div class="stat-box">
+            <div class="value">92%</div>
+            <div class="label">Best Accuracy</div>
+          </div>
+          <div class="stat-box">
+            <div class="value">24</div>
+            <div class="label">Best Streak</div>
+          </div>
+          <div class="stat-box">
+            <div class="value">12</div>
+            <div class="label">Top Score</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="challenge-leaderboard">
+      
+        <div class="leaderboard-header">
+          <h2>LEADERBOARD</h2>
+        </div>
+
+        <div class="leaderboard-row">
+          <span class="rank">👑</span>
+          <div class="avatar"></div>
+          <span class="name">MathWizard</span>
+          <span class="score">12,547</span>
+        </div>
+        <div class="leaderboard-row">
+          <span class="rank">👑</span>
+          <div class="avatar"></div>
+          <span class="name">CalculusKing</span>
+          <span class="score">11,982</span>
+        </div>
+        <div class="leaderboard-row">
+          <span class="rank">👑</span>
+          <div class="avatar"></div>
+          <span class="name">SigmaBrain</span>
+          <span class="score">10,451</span>
+        </div>
+        <div class="leaderboard-row">
+          <span class="rank">4</span>
+          <div class="avatar"></div>
+          <span class="name">OptixUser</span>
+          <span class="score">9,876</span>
+        </div>
+        <div class="leaderboard-row">
+          <span class="rank">5</span>
+          <div class="avatar"></div>
+          <span class="name">BrainStorm</span>
+          <span class="score">8,765</span>
+        </div>
+
+        <button onclick="window.location.href='leaderboard.html'" class="see-more">🏆 See Full Leaderboard</button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  </div>
+
+  <div class="bottom-bar">
+    <p>⚡ Complete challenges to earn XP, climb ranks, and unlock achievements!</p>
+    <button onclick="window.location.href='achievements.html'">🏆 View Achievements</button>
+  </div>
+
 </div>
 
   <script type="module">

@@ -2,175 +2,54 @@
 
 html, body { font-family: 'Manrope', sans-serif; }
 
-#history-container {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  background: transparent;
-  width: 100%;
-  box-sizing: border-box;
-  grid-column: 2 / span 2;
-  grid-row: 1 / span 3;
-}
-
-#history-container h1 {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 800;
-  color: #6fe7e0;
-  margin: 0 0 10px 0;
-  font-size: 2.2rem;
-}
-
-#quiz-card h1{
-  font-family: 'Poppins', sans-serif;
-  font-weight: 800;
-  color: #6fe7e0;
-  margin: 0 0 10px 0;
-  font-size: 30px;
-}
-
-#top-container, #bottom-container {
+#history-container{
   display: grid;
-  grid-template-columns: 320px 1fr; 
-  gap: 24px;
-  width: 100%;
-  margin-bottom: 24px;
-  align-items: start; 
+  gap: 16px;
+  width: calc(100% - 220px);
+  max-width: 100%;
+  padding: 18px clamp(16px, 3vw, 34px) 24px;
+  min-height: 100vh;
+  animation: fadeInHis 0.8s ease-in-out;
+  box-sizing: border-box;
+  flex: 1;
+  align-content: start;
 }
 
-#topleft-history,
-#topright-history,
-#recent-quizzes-history,
-#graph {
+@keyframes fadeInHis {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+.hero {
+  display: flex;
+  align-items: left;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 150px;
   padding: 24px;
-  background: #162238;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-  box-sizing: border-box;
-}
-
-#topleft-history {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-#topleft-history h3 {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 500;
-  color: #a9d9e3;
-  font-size: 1rem;
-  margin: 0;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #ffffff08;
-}
-
-#topright-history h3, 
-#recent-quizzes-history h3, 
-#graph h3 {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 700;
-  color: #6fe7e0;
-  font-size: 1.2rem;
-  margin-bottom: 15px;
-}
-
-#history-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  border-radius: 10px;
   overflow: hidden;
-  font-family: 'Manrope', sans-serif;
+  background-image:
+    linear-gradient(90deg, rgba(3, 8, 20, 0.96), rgba(5, 14, 31, 0.72), rgba(6, 17, 38, 0.22)),
+    url(../../images/historypage.png);
+  background-size: cover;
+  background-position: center;
+  border: 1px solid #214f7f;
+  border-radius: 14px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
 }
 
-#history-table th {
-  background-color: #233554;
-  color: #6fe7e0;
-  padding: 12px;
-  text-align: left;
-  font-size: 0.8rem;
-  font-family: 'Poppins', sans-serif;
-}
-
-#history-table td {
-  background-color: #1a273d;
-  color: #d4f1f7;
-  padding: 12px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  font-family: 'Manrope', sans-serif;
-}
-
-#show-more {
-  margin-top: 15px;
-  padding: 10px 20px;
-  background: #6fe7e0;
-  color: #0d1424;
-  border: none;
-  font-size: 15px;
-  border-radius: 8px;
+.hero h1 {
+  font-family: 'Lexend', sans-serif;
+  font-size: 40px;
   font-weight: 700;
-  cursor: pointer;
-  font-family: 'Manrope', sans-serif;
-}
-
-#show-more:hover{
-  background: #5fabdd;
-  color: #0d1424;
-  transform: translateY(-2px);
-  transition: all 0.3s ease;
-  box-shadow: 0 8px 18px #02061499;
-  cursor: pointer;
-}
-
-
-#quiz-cards-layout {
-  display: grid;
-  grid-template-columns: 1fr; 
-  gap: 12px;
-}
-
-.quizc {
-  background: #1e2d47;
-  border-radius: 12px;
-  padding: 15px;
-  border: 1px solid rgba(111, 231, 224, 0.1);
-  min-height: auto; /* Remove fixed height */
-}
-
-.quizc h3 {
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.95rem;
-  color: #6fe7e0;
-  margin: 0 0 4px 0;
-}
-
-.quizc p {
-  font-family: 'Manrope', sans-serif;
-  font-size: 0.85rem;
-  margin: 2px 0;
-}
-
-
-#graph {
-  min-height: 400px;
-  display: flex;
-  flex-direction: column;
-}
-
-canvas {
-  width: 100% !important;
-  max-height: 320px; 
-  margin-top: auto;
-}
-
-#quiz-card,
-#quiz-card-2,
-#quiz-card-3
-{
-  font-family: 'Manrope', sans-serif;
-  margin: 2px 0;
-  font-size: 15px;
   color: #ffffff;
+  letter-spacing: 0;
+  text-shadow: 0 0 18px rgba(45, 162, 255, 0.35);
+}
+
+.hero p {
+  padding-top: 8px;
+  color: #b6c4d8;
+  font-size: 15px;
 }

@@ -11,24 +11,78 @@
 
 <body>
 
-<div id="dashboard-container">
-  <div id="sidebar-1">
-      <h2>Optix</h2>
-      <ul>
-        <li id="dashboard-li" onclick="location.href='dashboard.html'">🏠Dashboard</li>
-        <li id="practice" class="current" onclick="location.href='practice.html'">📝Practice</li>
-        <li id="challenge" onclick="location.href='challenge.html'">🎮Challenge</li>
-        <li id="history" onclick="location.href='history.html'">📜History</li>
-        <li id="achievements" onclick="location.href='achievements.html'">🏆Achievements</li>
-        <li id="profile" onclick="location.href='profile.html'">🪪Profile</li>
-        <li id="logout">🚪Logout</li>
-      </ul>
-    </div>
-<div id="practice-container">
+  <aside class="sidebar">
 
-    <div id="header-practice">
-      <h2 id="practice-title">Practice Mode</h2>
+      <div class="sidebar-logo">
+        <img src="../../images/optix-logo.png">
+        <h2>OPTIX</h2>
+      </div>
+
+      <div id="sidebar-1">
+        <ul>
+          <li id="dashboard-li" onclick="location.href='dashboard.html'">🏠Dashboard</li>
+          <li id="practice"  class="current" onclick="location.href='practice.html'">📝Practice</li>
+          <li id="challenge" onclick="location.href='challenge.html'">🎮Challenge</li>
+          <li id="history" onclick="location.href='history.html'">📜History</li>
+          <li id="achievements" onclick="location.href='achievements.html'">🏆Achievements</li>
+          <li id="leaderboard" onclick="location.href='leaderboard.html'">🏆Leaderboard</li>
+          <li id="profile" onclick="location.href='profile.html'">🪪Profile</li>
+          <li id="settings" onclick="location.href='settings.html'">⚙️Settings</li>
+          <li id="logout" onclick="location.href='logout.html'">🚪Logout</li>
+        </ul>
+      </div>
+
+      <div class="sidebar-user">
+
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-avatar"></div>
+          <h3>Optix User</h3>
+          <p>Level 6</p>
+        </div>
+
+        <div class="sidebar-xp-bar"></div>
+      
+        <div class="sidebar-stats"> 
+
+          <div class="sidebar-stat">
+            <div class="sst">
+              <h1>🔥</h1>
+            </div>
+            
+            <div class="est">
+              <h2>24</h2>
+              <h3>Day Streak</h3>
+            </div>
+          </div>
+
+          <div class="sidebar-stat">
+            <div class="sst">
+              <h1>💎</h1>
+            </div>
+
+            <div class="est">
+              <h2>1,250</h2>
+              <h3>XP</h3>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </aside>
+
+  <div id="practice-container">
+
+    <div class="hero">
+      <h1>Practice Mode</h1>
       <p>Here, you can practice specific topics at your own pace.</p>
+    </div>
+
+    <div class="topbar-right">
+      <div class="topbar-stat">🔥 24</div>
+      <div class="topbar-stat">💎 1350</div>
+      <div>🔔</div>
     </div>
 
     <div class="main-selection">
@@ -86,6 +140,142 @@
       <button id="start-practice">Start Practice</button>
 
     </div>
+
+    </div>
+
+    <h2>All Topics</h2>
+
+    <div class="practice-grid">
+
+      <div class="practice-card">
+        <div class="topic-card-left">
+          <img src="../../images/arithmetic.png" alt="icon">
+        </div>
+        <div class="topic-card-right">
+          <h3>Number Sense</h3>
+          <p>Numbers, place value, and number properties.</p>
+          <span>18 practice sets</span>
+        </div>
+        <div class="topic-card-arrow">›</div>
+      </div>
+
+
+      <div class="practice-card">
+        <div class="topic-card-left">
+          <img src="../../images/arithmetic.png" alt="icon">
+        </div>
+        <div class="topic-card-right">
+          <h3>Number Sense</h3>
+          <p>Numbers, place value, and number properties.</p>
+          <span>18 practice sets</span>
+        </div>
+        <div class="topic-card-arrow">›</div>
+      </div>
+
+      <div class="practice-card">
+        <div class="topic-card-left">
+          <img src="../../images/arithmetic.png" alt="icon">
+        </div>
+        <div class="topic-card-right">
+          <h3>Number Sense</h3>
+          <p>Numbers, place value, and number properties.</p>
+          <span>18 practice sets</span>
+        </div>
+        <div class="topic-card-arrow">›</div>
+      </div>
+
+      <div class="practice-card">
+        <div class="topic-card-left">
+          <img src="../../images/arithmetic.png" alt="icon">
+        </div>
+        <div class="topic-card-right">
+          <h3>Number Sense</h3>
+          <p>Numbers, place value, and number properties.</p>
+          <span>18 practice sets</span>
+        </div>
+        <div class="topic-card-arrow">›</div>
+      </div>
+
+      <div class="practice-card">
+        <div class="topic-card-left">
+          <img src="../../images/arithmetic.png" alt="icon">
+        </div>
+        <div class="topic-card-right">
+          <h3>Number Sense</h3>
+          <p>Numbers, place value, and number properties.</p>
+          <span>18 practice sets</span>
+        </div>
+        <div class="topic-card-arrow">›</div>
+      </div>
+
+      <div class="practice-card">
+        <div class="topic-card-left">
+          <img src="../../images/arithmetic.png" alt="icon">
+        </div>
+        <div class="topic-card-right">
+          <h3>Number Sense</h3>
+          <p>Numbers, place value, and number properties.</p>
+          <span>18 practice sets</span>
+        </div>
+        <div class="topic-card-arrow">›</div>
+      </div>
+
+      <div class="practice-card">
+        <div class="topic-card-left">
+          <img src="../../images/arithmetic.png" alt="icon">
+        </div>
+        <div class="topic-card-right">
+          <h3>Number Sense</h3>
+          <p>Numbers, place value, and number properties.</p>
+          <span>18 practice sets</span>
+        </div>
+        <div class="topic-card-arrow">›</div>
+      </div>
+
+      <div class="practice-card">
+        <div class="topic-card-left">
+          <img src="../../images/arithmetic.png" alt="icon">
+        </div>
+        <div class="topic-card-right">
+          <h3>Number Sense</h3>
+          <p>Numbers, place value, and number properties.</p>
+          <span>18 practice sets</span>
+        </div>
+        <div class="topic-card-arrow">›</div>
+      </div>
+
+      <div class="practice-card">
+        <div class="topic-card-left">
+          <img src="../../images/arithmetic.png" alt="icon">
+        </div>
+        <div class="topic-card-right">
+          <h3>Number Sense</h3>
+          <p>Numbers, place value, and number properties.</p>
+          <span>18 practice sets</span>
+        </div>
+        <div class="topic-card-arrow">›</div>
+      </div>
+
+      <div class="practice-card">
+        <div class="topic-card-left">
+          <img src="../../images/arithmetic.png" alt="icon">
+        </div>
+        <div class="topic-card-right">
+          <h3>Number Sense</h3>
+          <p>Numbers, place value, and number properties.</p>
+          <span>18 practice sets</span>
+        </div>
+        <div class="topic-card-arrow">›</div>
+      </div>
+
+    </div>
+
+  </div>
+</body>
+
+
+
+
 
     </div>
 
