@@ -25,14 +25,22 @@ app.post("/generate-quiz", async (req, res) => {
 
     const { topic, difficulty, count } = req.body;
 
-    const prompt = `
-Generate ${count} multiple choice math questions about ${topic}.
+    const prompt = `You are a math quiz generator.
+
+Generate ${count} unique multiple-choice questions about ${topic}.
 
 Difficulty: ${difficulty}.
 
 Return ONLY valid JSON.
 
-Format:
+Requirements:
+- Output exactly ${count} items.
+- Each item must be an object with keys: "question", "options", "answer".
+- "options" must be an array of 4 string values.
+- "answer" must exactly match one of the provided options.
+- Do not include any explanation, markdown, or extra text outside the JSON array.
+
+Example format:
 [
   {
     "question": "...",
@@ -50,6 +58,7 @@ Format:
         },
       ],
       model: "llama-3.3-70b-versatile",
+      temperature: 0.2,
     });
 
     const text = chatCompletion.choices[0].message.content;

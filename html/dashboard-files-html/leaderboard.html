@@ -1,18 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
     
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>History</title>
+    <title>Leaderboard</title>
     <link rel="stylesheet" href="../../css/dashboard-files/global.css">
-    <link rel="stylesheet" href="../../css/dashboard-files/history.css">
+    <link rel="stylesheet" href="../../css/dashboard-files/leaderboard.css">
 </head>
 
 <body>
-  <div id="dashboard-container">
 
-    <aside class="sidebar">
+  <aside class="sidebar">
 
       <div class="sidebar-logo">
         <img src="../../images/optix-logo.png">
@@ -24,9 +23,9 @@
           <li id="dashboard-li" onclick="location.href='dashboard.html'">🏠Dashboard</li>
           <li id="practice" onclick="location.href='practice.html'">📝Practice</li>
           <li id="challenge" onclick="location.href='challenge.html'">🎮Challenge</li>
-          <li id="history" class="current" onclick="location.href='history.html'">📜History</li>
+          <li id="history" onclick="location.href='history.html'">📜History</li>
           <li id="achievements" onclick="location.href='achievements.html'">🏆Achievements</li>
-          <li id="leaderboard" onclick="location.href='leaderboard.html'">🏆Leaderboard</li>
+          <li id="leaderboard" class="current" onclick="location.href='leaderboard.html'">🏆Leaderboard</li>
           <li id="profile" onclick="location.href='profile.html'">🪪Profile</li>
           <li id="settings" onclick="location.href='settings.html'">⚙️Settings</li>
           <li id="logout" onclick="location.href='logout.html'">🚪Logout</li>
@@ -71,73 +70,18 @@
 
       </div>
 
-  </aside>
+    </aside>
 
-  <div id="history-container">
+  <div id="leaderboard-container">
 
     <div class="hero">
-      <div>
-        <h1> HISTORY</h1>
-        <p>Track your learning journey and progress over time.</p>
-      </div>
+      <h1>The Leaderboard</h1>
+      <p>See how you rank against other learners</p>
     </div>
-
-    <div class="history-cards">
-
-      <div class="history-card">
-        <div class="dimg">
-        <img src="../../images/arithmetic.png" class="history-icon">
-        </div>
-        <div class="hisinfo">
-          <h1 id="quizzestaken">126</h1>
-          <h2>Quizzes Taken</h2>
-        </div>
-      </div>
-    
-      <div class="history-card">
-        <div class="dimg">
-        <img src="../../images/arithmetic.png" class="history-icon">
-        </div>
-        <div class="hisinfo">
-          <h1 id="timespent">--</h1>
-          <h2>Time Spent</h2>
-        </div>
-      </div>
-      
-      <div class="history-card">
-        <div class="dimg">
-        <img src="../../images/arithmetic.png" class="history-icon">
-        </div>
-        <div class="hisinfo">
-          <h1 id="questionsanswered">892</h1>
-          <h2>Questions Answered</h2>
-        </div>
-      </div>
-
-      <div class="history-card">
-        <div class="dimg">
-        <img src="../../images/arithmetic.png" class="history-icon">
-        </div>
-        <div class="hisinfo">
-          <h1 id="avgscore">92%</h1>
-          <h2>Average Score</h2>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="history-table">
-      <h1>RECENT ACTIVITY</h1>
-
-
-
-    </div> 
 
   </div>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0"></script>
-  <script type="module" src="../../js/pages/history.js"></script>
   <script type="module">
     import { requireLogin, logoutUser } from "../../js/shared/auth.js";
 
@@ -153,6 +97,7 @@
     }
 
   </script>
+ 
 </body>
 
 </html>

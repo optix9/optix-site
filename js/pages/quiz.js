@@ -1,4 +1,4 @@
-import { getUserProgress, saveQuizResult, saveUserProgress } from "./storage.js";
+import { getUserProgress, saveQuizResult, saveUserProgress } from "../shared/storage.js";
 
 let currentIndex = 0;
 let score = 0;

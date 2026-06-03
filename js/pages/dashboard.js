@@ -1,4 +1,4 @@
-import { getCurrentUser, getUserProgress } from "./storage.js";
+import { getCurrentUser, getUserProgress } from "../shared/storage.js";
 
 const QUIZ_API_URL =
   localStorage.getItem("optixQuizApiUrl") ||
