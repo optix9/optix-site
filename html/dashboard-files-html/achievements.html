@@ -6,25 +6,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Achievements</title>
     <link rel="stylesheet" href="../../css/dashboard-files/global.css">
-
+    <link rel="stylesheet" href="../../css/dashboard-files/achievements.css">
 </head>
 
 <body>
-<div id="dashboard-container">
-  <div id="sidebar-1">
-      <h2>Optix</h2>
-      <ul>
-        <li id="dashboard-li" onclick="location.href='dashboard.html'">🏠Dashboard</li>
-        <li id="practice" onclick="location.href='practice.html'">📝Practice</li>
-        <li id="challenge" onclick="location.href='challenge.html'">🎮Challenge</li>
-        <li id="history" onclick="location.href='history.html'">📜History</li>
-        <li id="achievements" class="current" onclick="location.href='achievements.html'">🏆Achievements</li>
-        <li id="profile" onclick="location.href='profile.html'">🪪Profile</li>
-        <li id="logout">🚪Logout</li>
-      </ul>
-    </div>
-</div>
 
+  <aside class="sidebar">
+
+      <div class="sidebar-logo">
+        <img src="../../images/optix-logo.png">
+        <h2>OPTIX</h2>
+      </div>
+
+      <div id="sidebar-1">
+        <ul>
+          <li id="dashboard-li" onclick="location.href='dashboard.html'">🏠Dashboard</li>
+          <li id="practice" onclick="location.href='practice.html'">📝Practice</li>
+          <li id="challenge" onclick="location.href='challenge.html'">🎮Challenge</li>
+          <li id="history" onclick="location.href='history.html'">📜History</li>
+          <li id="achievements" class="current" onclick="location.href='achievements.html'">🏆Achievements</li>
+          <li id="leaderboard" onclick="location.href='leaderboard.html'">🏆Leaderboard</li>
+          <li id="profile" onclick="location.href='profile.html'">🪪Profile</li>
+          <li id="logout" onclick="location.href='logout.html'">🚪Logout</li>
+        </ul>
+      </div>
+
+      <div class="sidebar-user">
+
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-avatar"></div>
+          <h3>Optix User</h3>
+          <p>Level 6</p>
+        </div>
+
+        <div class="sidebar-xp-bar"></div>
+      
+        <div class="sidebar-stats"> 
+
+          <div class="sidebar-stat">
+            <div class="sst">
+              <h1>🔥</h1>
+            </div>
+            
+            <div class="est">
+              <h2>24 Day</h2>
+              <h3>Streak</h3>
+            </div>
+          </div>
+
+          <div class="sidebar-stat">
+            <div class="sst">
+              <h1>💎</h1>
+            </div>
+
+            <div class="est">
+              <h2>1,250</h2>
+              <h3>XP</h3>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </aside>
+
+  <div id="achievements-container">
+
+    <div class="hero">
+      <h1>Achievements</h1>
+      <p>See your accomplishments and milestones!</p>
+    </div>
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script type="module">
     import { requireLogin, logoutUser } from "../../js/shared/auth.js";
 
@@ -40,6 +96,7 @@
     }
 
   </script>
+ 
 </body>
 
 </html>
