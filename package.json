@@ -8,6 +8,7 @@
     "groq-sdk": "^1.2.0"
   },
   "scripts": {
+    "api": "node ai/groq.js",
     "gemini": "node ai/gemini.js"
   }
 }

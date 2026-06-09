@@ -1,8 +1,6 @@
 const QUIZ_API_URL =
   localStorage.getItem("optixQuizApiUrl") ||
-  (["localhost", "127.0.0.1"].includes(window.location.hostname)
-    ? "http://localhost:3001"
-    : "");
+  "http://localhost:3001";
 
 async function requestGeneratedQuiz(topic, difficulty = "Easy", count = 10) {
   if (!QUIZ_API_URL) {
@@ -31,17 +29,20 @@ async function requestGeneratedQuiz(topic, difficulty = "Easy", count = 10) {
 }
 
 function getPracticeTopic() {
-  const input = document.getElementById("searchInput");
-  const typedTopic = input?.value?.trim();
-  const savedTopic = localStorage.getItem("selectedTopic");
-  return typedTopic || savedTopic || "";
+  return document.getElementById("searchInput")?.value.trim() || "";
 }
 
 function getPracticeSettings() {
-  const difficulty = localStorage.getItem("selectedDifficulty") || "Easy";
-  const count = parseInt(localStorage.getItem("selectedLength"), 10) || 10;
+  const difficulty =
+    document.querySelector(".difficulty-btn.current")?.textContent.trim() ||
+    "Easy";
+
+  const count =
+    parseInt(document.getElementById("questions")?.value, 10) || 20;
+
   return { difficulty, count };
 }
+
 
 function showPracticeError(message) {
   alert(message || "Unable to generate practice quiz right now.");
@@ -49,6 +50,19 @@ function showPracticeError(message) {
 
 document.addEventListener("DOMContentLoaded", () => {
   const startPracticeBtn = document.getElementById("start-practice");
+  const difficultyBtns = document.querySelectorAll(".difficulty-btn");
+
+  difficultyBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      difficultyBtns.forEach(otherBtn => otherBtn.classList.remove("current"));
+      btn.classList.add("current");
+    });
+  });
+
+  if (difficultyBtns.length > 0) {
+    difficultyBtns[0].classList.add("current");
+  }
+
   if (!startPracticeBtn) return;
 
   startPracticeBtn.addEventListener("click", async () => {

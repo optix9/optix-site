@@ -197,10 +197,10 @@ body {
   border-color: #ef4444;
 }
 
-.difficulty-btn.active{
+.difficulty-btn.current{
   background: #2d5a6e;
   color: #90c8d4;
-  transform: translateY(-3px);
+  transform: translateY(-5px);
   box-shadow: 0 4px 12px rgba(45, 90, 110, 0.4);
 }
 

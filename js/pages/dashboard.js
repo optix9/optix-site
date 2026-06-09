@@ -1,4 +1,5 @@
 import { getCurrentUser, getUserProgress } from "../shared/storage.js";
+import { getRecentResults } from '../shared/storage.js';
 
 const QUIZ_API_URL =
   localStorage.getItem("optixQuizApiUrl") ||
@@ -14,6 +15,7 @@ function getTopicLabel(topicElement) {
   return (
     topicElement.dataset.topic?.trim() ||
     topicElement.querySelector(".quiz-name")?.textContent.trim() ||
+    topicElement.textContent.trim() ||
     ""
   );
 }
@@ -63,13 +65,10 @@ async function requestGeneratedQuiz(topic, difficulty = "Easy", count = 10) {
 }
 
 async function handleRoadmapTopicClick(topicElement) {
-  if (topicElement.classList.contains("upcoming")) {
-    return;
-  }
-
   const topicName = getTopicLabel(topicElement);
   if (!topicName) {
     console.error("Roadmap topic has no label.");
+    showQuizGenerationError("Selected roadmap topic is invalid.");
     return;
   }
 
@@ -83,14 +82,20 @@ async function handleRoadmapTopicClick(topicElement) {
     console.error("AI quiz generation failed:", error);
     localStorage.removeItem("generatedQuestions");
     showQuizGenerationError(
-      "AI quiz generation failed. Please make sure the quiz API server is running and try again."
+      error.message ||
+        "AI quiz generation failed. Please make sure the quiz API server is running and try again."
     );
   }
 }
 
 function setupRoadmapClickHandlers() {
-  document.querySelectorAll(".roadmap-topic").forEach(topic => {
-    topic.addEventListener("click", () => handleRoadmapTopicClick(topic));
+  const roadmapContainer = document.getElementById("roadmap-scroll");
+  if (!roadmapContainer) return;
+
+  roadmapContainer.addEventListener("click", event => {
+    const topic = event.target.closest(".roadmap-topic");
+    if (!topic) return;
+    handleRoadmapTopicClick(topic);
   });
 }
 
@@ -140,3 +145,30 @@ document.addEventListener("DOMContentLoaded", () => {
     console.error("Dashboard initialization failed:", err);
   });
 });
+
+const quizzesTakenEl = document.getElementById("quizzes-taken");
+const averageScoreEl = document.getElementById("average-score");
+const topicsMasteredEl = document.getElementById("topics-mastered");
+
+async function loadDashboardResults(){
+  const results = await getRecentResults();
+  const quizzesTaken = results.length;
+    if (quizzesTakenEl) quizzesTakenEl.textContent = quizzesTaken;
+
+  const avg = results.length
+		? Math.round(results.reduce((s, r) => s + (Number(r && r.percentage) || 0), 0) / results.length)
+		: 0;
+	if (averageScoreEl) averageScoreEl.textContent = `${avg}%`;
+
+  const statRingAvgScore = document.querySelector(".stat-card-ring-avgscore");
+  if (statRingAvgScore) {
+    statRingAvgScore.style.background = `conic-gradient(#2da2ff 0deg ${avg * 3.6}deg, #1b2947 ${avg * 3.6}deg)`;
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  loadDashboardResults().catch(err => {
+    console.error('Failed to load dashboard results:', err);
+  });
+});
+

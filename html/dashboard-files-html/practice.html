@@ -107,16 +107,16 @@
 
         <h3 class="prac-title">Number of Questions</h3>
 
-        <h4 id="question-amount">5</h4>
-
+        <label for="questions">Questions — <span id="q-count">20</span></label>
         <input
-          type="range"
-          id="questionRange"
-          min="5"
-          max="25"
-          step="5"
-          value="10"
-        />
+            type="range"
+            id="questions"
+            min="5"
+            max="20"
+            step="1"
+            value="20"
+            oninput="document.getElementById('q-count').textContent = this.value"
+          />
 
       </div>
 
@@ -292,50 +292,6 @@
     }
 
   </script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const topicBtns = document.querySelectorAll('.topic-btn');
-      const difficultyBtns = document.querySelectorAll('.difficulty-btn');
-      const lengthBtns = document.querySelectorAll('.length-btn');
-      const startPracticeBtn = document.getElementById('start-practice');
-
-      localStorage.removeItem('selectedTopic');
-      localStorage.removeItem('selectedDifficulty');
-      localStorage.removeItem('selectedLength');
-
-      function setActive(btnGroup, activeBtn) {
-        btnGroup.forEach(btn => btn.classList.remove('active'));
-        activeBtn.classList.add('active');
-      }
-
-      topicBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          setActive(topicBtns, btn);
-          localStorage.setItem('selectedTopic', btn.textContent.trim());
-        });
-      });
-
-      difficultyBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          setActive(difficultyBtns, btn);
-          localStorage.setItem('selectedDifficulty', btn.textContent.trim());
-        });
-      });
-
-      lengthBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          setActive(lengthBtns, btn);
-          const lengthMatch = btn.textContent.match(/\d+/);
-          const lengthValue = lengthMatch ? parseInt(lengthMatch[0]) : null;
-          if (lengthValue) {
-            localStorage.setItem('selectedLength', lengthValue);
-          }
-        });
-      });
-
-    });
-  </script>
-
   <script type="module" src="../../js/pages/practice.js"></script>
   <script type="module">
     import { topics } from "../../data/topics.js";
@@ -357,7 +313,6 @@
 
         div.addEventListener("click", () => {
           input.value = topic;
-          localStorage.setItem("selectedTopic", topic);
           results.innerHTML = "";
         });
 
