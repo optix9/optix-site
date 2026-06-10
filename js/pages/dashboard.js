@@ -138,6 +138,13 @@ async function initDashboard() {
   const progress = await loadProgress();
   renderRoadmap(progress);
   setupRoadmapClickHandlers();
+  // load recent activity into the right-panel recent activity card
+  try {
+    const results = Array.isArray(await getRecentResults()) ? await getRecentResults() : [];
+    renderRecentActivity(results);
+  } catch (err) {
+    console.error('Failed to load recent activity for dashboard:', err);
+  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -171,4 +178,70 @@ document.addEventListener('DOMContentLoaded', () => {
     console.error('Failed to load dashboard results:', err);
   });
 });
+
+// --- recent activity helpers (copied from pages/history.js) ---
+function safeDate(result) {
+  if (!result) return new Date();
+  const createdAt = result.createdAt || result.date;
+  if (createdAt && typeof createdAt.toDate === 'function') return createdAt.toDate();
+  if (createdAt && createdAt.seconds) return new Date(createdAt.seconds * 1000);
+  if (typeof createdAt === 'string' || typeof createdAt === 'number') return new Date(createdAt);
+  return new Date();
+}
+
+function formatRelativeTime(date) {
+  const now = new Date();
+  const diff = Math.max(0, now - date);
+  const minutes = Math.floor(diff / 60000);
+  const hours = Math.floor(diff / 3600000);
+  const days = Math.floor(diff / 86400000);
+
+  if (days > 0) return `${days}d ago`;
+  if (hours > 0) return `${hours}h ago`;
+  if (minutes > 0) return `${minutes}m ago`;
+  return 'Just now';
+}
+
+function renderRecentActivity(results) {
+  const list = document.getElementById('dashboard-activity-list') || document.querySelector('.activity-list');
+  if (!list) return;
+  list.innerHTML = '';
+
+  if (!results || !results.length) {
+    const p = document.createElement('p');
+    p.textContent = 'No recent activity yet.';
+    p.className = 'history-empty';
+    list.appendChild(p);
+    return;
+  }
+
+  results.slice(0, 4).forEach(result => {
+    const date = safeDate(result);
+    const title = result.topic || result.name || 'Unknown Quiz';
+
+    const item = document.createElement('div');
+    item.className = 'activity-item';
+
+    const check = document.createElement('div');
+    check.className = 'activity-check';
+    check.textContent = '✓';
+
+    const info = document.createElement('div');
+    info.className = 'activity-info';
+    const titleSpan = document.createElement('span');
+    titleSpan.textContent = title;
+    titleSpan.className = 'activity-title';
+    info.appendChild(titleSpan);
+
+    const time = document.createElement('div');
+    time.className = 'activity-time';
+    time.textContent = formatRelativeTime(date);
+
+    item.appendChild(check);
+    item.appendChild(info);
+    item.appendChild(time);
+
+    list.appendChild(item);
+  });
+}
 

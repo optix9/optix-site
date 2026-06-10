@@ -77,6 +77,7 @@ a {
   color: #f3f6ff;
   font-size: 25px;
   margin: 0;
+  padding-left: 10px;
 }
 
 .topbar-left h3{
@@ -86,6 +87,16 @@ a {
   font-size: 15px;
   margin: 0;
   padding-top: 4px;
+  padding-left: 10px;
+}
+
+.topbar-left{
+  background: linear-gradient(135deg, #07152d, #0a0f4ef4);
+  border: 1px solid #19386d;
+  box-shadow: 0 14px 26px #00000033;
+  padding: 12px;
+  width: 100%;
+  border-radius: 10px;
 }
 
 .topbar-stat {
@@ -147,8 +158,8 @@ a {
 
 .stat-card-icon {
   flex-shrink: 0;
-  width: 56px;
-  height: 56px;
+  width: 100px;
+  height: 100px;
   object-fit: contain;
   filter: drop-shadow(0 0 10px #278cff88);
 }
@@ -342,6 +353,24 @@ a {
   cursor: pointer;
   border: 3px solid transparent;
 }
+
+.starter {
+  border-radius: 10% !important;
+  background: #2f5184;
+  border-color: #0f5689;
+  color: #ffffff;
+  box-shadow: 0 0 18px #278cff99;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  text-align: center;
+  width: 80px;
+  height: 80px;
+}
+
+.starter:hover {
+  transform: scale(1.1);
+}
+
 
 .completed .node {
   background: #0b3470;
@@ -663,7 +692,14 @@ a {
   border: 1px solid #95afd3;
   border-radius: 12px;
   height: 600px;
-  width: 900px;
+  width: 450px;
   text-align: center;
   margin: auto;
 }
+
+.edit-goal-content{
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
