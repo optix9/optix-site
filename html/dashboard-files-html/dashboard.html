@@ -53,7 +53,7 @@
             </div>
             
             <div class="est">
-              <h2>24 Day</h2>
+              <h2 id="streaktextd">24 Day</h2>
               <h3>Streak</h3>
             </div>
           </div>
@@ -492,41 +492,67 @@
 
     <div class="edit-goal-content">
       <div class="goal-header">
-        <h2>🎯 Edit Daily Goal</h2>
+        <div id="goalheader1">
+          <h2>🎯 Edit Daily Goal</h2>
+          <h4>Choose the XP Goal you want to achieve today.</h4>
+        </div>
         <button class="close-btn">&times;</button>
       </div>
 
-      <h3>Choose Your Challenge-</h3>
       <div class="goal-options">
+
         <button class="goal-option" data-xp="25">
-            <span class="goal-name">🌱 Casual</span>
-            <span class="goal-xp">25 XP</span>
+          <img src="../../images/modal-logo.png">
+
+          <div class="modal-info">
+            <span class="dailygoal-name">Casual</span>
+            <span class="dailygoal-description">A light goal for steady progress</span>
+          </div>
+
+          <div class="goal-xp numberone">25 XP</div>
         </button>
 
         <button class="goal-option" data-xp="50">
-            <span class="goal-name">📚 Focused</span>
-            <span class="goal-xp">50 XP</span>
+          <img src="../../images/modal-logo.png">
+
+          <div class="modal-info">
+            <span class="dailygoal-name">Focused</span>
+            <span class="dailygoal-description">A balanced goal to keep you moving</span>
+          </div>
+
+          <div class="goal-xp numbertwo">50 XP</div>
         </button>
 
-        <button class="goal-option selected" data-xp="75">
-            <span class="goal-name">⚡ Driven</span>
-            <span class="goal-xp">75 XP</span>
+        <button class="goal-option" data-xp="75">
+          <img src="../../images/modal-logo.png">
+
+          <div class="modal-info">
+            <span class="dailygoal-name">Driven</span>
+            <span class="dailygoal-description">A solid challenge for the day</span>
+          </div>
+
+          <div class="goal-xp numberthree">75 XP</div>
         </button>
 
         <button class="goal-option" data-xp="100">
-            <span class="goal-name">🔥 Grind</span>
-            <span class="goal-xp">100 XP</span>
+          <img src="../../images/modal-logo.png">
+
+          <div class="modal-info">
+            <span class="dailygoal-name">Grind</span>
+            <span class="dailygoal-description">Push your limits and earn more</span>
+          </div>
+
+          <div class="goal-xp numberfour">100 XP</div>
         </button>
+
       </div>
 
       <button class="custom-goal-btn">
           ✏️ Custom Goal
+          <h3>Set your own XP goal.</h3>
       </button>
 
-      <div class="modal-buttons">
-          <button class="cancel-btn">Cancel</button>
-          <button class="save-btn">Save Goal</button>
-      </div>
+      <button class="save-btn">Save Goal</button>
 
     </div>
 
@@ -540,10 +566,35 @@
     <div class="custom-goal-overlay">
 
       <div class="custom-goal-content">
+      
+        <div class="goal-header">
+          <h2>🎯 Create Custom Goal</h2>
+          <button class="close-btn2">&times;</button>
+        </div>
+ 
+        <div class="xp-input-section">
+          <label>Daily XP Goal</label>
+            <div class="xp-input-container">
+              <input
+                  type="number"
+                  id="customXP"
+                  min="1"
+                  max="500"
+                  value="75"
+              >
 
+              <span>XP</span>
+            </div>
+        </div>
 
+        <div class="reward-preview">
+            Reward:
+            <span id="rewardValue">+75 XP</span>
+        </div>
 
-
+        <button class="done-btn">
+            Done
+        </button>
 
       </div>
 
@@ -586,16 +637,23 @@
 
   <script>
     $(".edit-goal-container").hide();
+    $(".custom-goal-modal").hide();
 
     $("#edit-goal").click(function () {
       $(".edit-goal-container").fadeIn(200);
     });
 
-    $(".cancel-btn").click(function () {
+    $(".close-btn").click(function () {
       $(".edit-goal-container").fadeOut(200);
     });
 
+    $(".custom-goal-btn").click(function () {
+      $(".custom-goal-modal").fadeIn(200);
+    });
 
+    $(".close-btn2").click(function () {
+      $(".custom-goal-modal").fadeOut(200);
+    });
 
 
   </script>

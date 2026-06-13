@@ -1,5 +1,6 @@
 import { getCurrentUser, getUserProgress } from "../shared/storage.js";
 import { getRecentResults } from '../shared/storage.js';
+import { streakUpdate } from "../shared/storage.js";
 
 const QUIZ_API_URL =
   localStorage.getItem("optixQuizApiUrl") ||
@@ -239,9 +240,16 @@ function renderRecentActivity(results) {
 
     item.appendChild(check);
     item.appendChild(info);
+
     item.appendChild(time);
 
     list.appendChild(item);
   });
 }
 
+//*Streak bottom
+
+const streak = document.getElementById("streaktextd");
+const streakVal = streakUpdate();
+
+streak.textContent = `${streakVal} ${streakVal === 1 ? "day" : "days"}`;

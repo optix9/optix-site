@@ -27,7 +27,7 @@
           <li id="achievements" onclick="location.href='achievements.html'">🏆Achievements</li>
           <li id="leaderboard" onclick="location.href='leaderboard.html'">🏆Leaderboard</li>
           <li id="profile" onclick="location.href='profile.html'">🪪Profile</li>
-          <li id="logout" onclick="location.href='logout.html'">🚪Logout</li>
+          <li id="logout">🚪Logout</li>
         </ul>
       </div>
 
@@ -40,7 +40,7 @@
         </div>
 
         <div class="sidebar-xp-bar"></div>
-      
+        
         <div class="sidebar-stats"> 
 
           <div class="sidebar-stat">
@@ -49,7 +49,7 @@
             </div>
             
             <div class="est">
-              <h2>24 Day</h2>
+              <h2 id="streaktextd"> </h2>
               <h3>Streak</h3>
             </div>
           </div>
@@ -69,7 +69,7 @@
 
       </div>
 
-    </aside>
+  </aside>
 
   <div id="practice-container">
 
@@ -137,144 +137,15 @@
 
     </div>
 
-    <h2>All Topics</h2>
-
-    <div class="practice-grid">
-
-      <div class="practice-card">
-        <div class="topic-card-left">
-          <img src="../../images/arithmetic.png" alt="icon">
-        </div>
-        <div class="topic-card-right">
-          <h3>Number Sense</h3>
-          <p>Numbers, place value, and number properties.</p>
-          <span>18 practice sets</span>
-        </div>
-        <div class="topic-card-arrow">›</div>
-      </div>
-
-
-      <div class="practice-card">
-        <div class="topic-card-left">
-          <img src="../../images/arithmetic.png" alt="icon">
-        </div>
-        <div class="topic-card-right">
-          <h3>Number Sense</h3>
-          <p>Numbers, place value, and number properties.</p>
-          <span>18 practice sets</span>
-        </div>
-        <div class="topic-card-arrow">›</div>
-      </div>
-
-      <div class="practice-card">
-        <div class="topic-card-left">
-          <img src="../../images/arithmetic.png" alt="icon">
-        </div>
-        <div class="topic-card-right">
-          <h3>Number Sense</h3>
-          <p>Numbers, place value, and number properties.</p>
-          <span>18 practice sets</span>
-        </div>
-        <div class="topic-card-arrow">›</div>
-      </div>
-
-      <div class="practice-card">
-        <div class="topic-card-left">
-          <img src="../../images/arithmetic.png" alt="icon">
-        </div>
-        <div class="topic-card-right">
-          <h3>Number Sense</h3>
-          <p>Numbers, place value, and number properties.</p>
-          <span>18 practice sets</span>
-        </div>
-        <div class="topic-card-arrow">›</div>
-      </div>
-
-      <div class="practice-card">
-        <div class="topic-card-left">
-          <img src="../../images/arithmetic.png" alt="icon">
-        </div>
-        <div class="topic-card-right">
-          <h3>Number Sense</h3>
-          <p>Numbers, place value, and number properties.</p>
-          <span>18 practice sets</span>
-        </div>
-        <div class="topic-card-arrow">›</div>
-      </div>
-
-      <div class="practice-card">
-        <div class="topic-card-left">
-          <img src="../../images/arithmetic.png" alt="icon">
-        </div>
-        <div class="topic-card-right">
-          <h3>Number Sense</h3>
-          <p>Numbers, place value, and number properties.</p>
-          <span>18 practice sets</span>
-        </div>
-        <div class="topic-card-arrow">›</div>
-      </div>
-
-      <div class="practice-card">
-        <div class="topic-card-left">
-          <img src="../../images/arithmetic.png" alt="icon">
-        </div>
-        <div class="topic-card-right">
-          <h3>Number Sense</h3>
-          <p>Numbers, place value, and number properties.</p>
-          <span>18 practice sets</span>
-        </div>
-        <div class="topic-card-arrow">›</div>
-      </div>
-
-      <div class="practice-card">
-        <div class="topic-card-left">
-          <img src="../../images/arithmetic.png" alt="icon">
-        </div>
-        <div class="topic-card-right">
-          <h3>Number Sense</h3>
-          <p>Numbers, place value, and number properties.</p>
-          <span>18 practice sets</span>
-        </div>
-        <div class="topic-card-arrow">›</div>
-      </div>
-
-      <div class="practice-card">
-        <div class="topic-card-left">
-          <img src="../../images/arithmetic.png" alt="icon">
-        </div>
-        <div class="topic-card-right">
-          <h3>Number Sense</h3>
-          <p>Numbers, place value, and number properties.</p>
-          <span>18 practice sets</span>
-        </div>
-        <div class="topic-card-arrow">›</div>
-      </div>
-
-      <div class="practice-card">
-        <div class="topic-card-left">
-          <img src="../../images/arithmetic.png" alt="icon">
-        </div>
-        <div class="topic-card-right">
-          <h3>Number Sense</h3>
-          <p>Numbers, place value, and number properties.</p>
-          <span>18 practice sets</span>
-        </div>
-        <div class="topic-card-arrow">›</div>
-      </div>
-
+    <div id="quote-area">
+      <div class="quote-box">
+        <p id="quote-text">Loading quote...</p>
+        <p id="quote-author"></p>
+      </div>  
     </div>
 
-  </div>
-</body>
-
-
-
-
-
-    </div>
 
   </div>
-</div>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script type="module">
@@ -304,7 +175,7 @@
 
       const matches = topics
         .filter(topic => topic.toLowerCase().includes(value.toLowerCase()))
-        .slice(0, 5);
+        .slice(0, 8);
 
       matches.forEach(topic => {
         const div = document.createElement("div");
@@ -325,6 +196,30 @@
     input.addEventListener("input", () => {
       showTopics(input.value);
     });
+  </script>
+
+  <script>
+
+    async function getQuote() {
+    try {
+      const response = await fetch("https://dummyjson.com/quotes/random");
+      const data = await response.json();
+
+      document.getElementById("quote-text").textContent =
+        `"${data.quote}"`;
+
+      document.getElementById("quote-author").textContent =
+        `— ${data.author}`;
+    } catch (error) {
+      console.error(error);
+      document.getElementById("quote-text").textContent =
+        "Could not load quote.";
+    }
+    }
+
+    getQuote();
+
+
   </script>
 </body>
 

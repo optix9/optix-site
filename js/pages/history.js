@@ -1,4 +1,5 @@
 import { getRecentResults } from '../shared/storage.js';
+import { streakUpdate } from "../shared/storage.js";
 
 /* CARDS INFO */
 const quizzesTakenEl = document.getElementById('quizzestaken');
@@ -127,3 +128,9 @@ document.addEventListener('DOMContentLoaded', () => {
       renderHistoryTable([]);
     });
 });
+
+
+const streak = document.getElementById("streaktextd");
+const streakVal = streakUpdate();
+
+streak.textContent = `${streakVal} ${streakVal === 1 ? "day" : "days"}`;

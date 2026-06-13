@@ -1,3 +1,5 @@
+import { streakUpdate } from "../shared/storage.js";
+
 const QUIZ_API_URL =
   localStorage.getItem("optixQuizApiUrl") ||
   "http://localhost:3001";
@@ -94,3 +96,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+
+const streak = document.getElementById("streaktextd");
+const streakVal = streakUpdate();
+
+streak.textContent = `${streakVal} ${streakVal === 1 ? "day" : "days"}`;

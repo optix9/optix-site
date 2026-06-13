@@ -277,99 +277,22 @@ body {
   margin-top: 2px;
 }
 
-/*CARDS*/
+/*QUOTE*/
 
-.practice-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 14px;
-  padding: 0;
-}
-
-.practice-card {
+#quote-area{
   display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 14px 16px;
-  background: #0a1326d9;
-  border-radius: 12px;
-  border: 1px solid rgba(75, 137, 190, 0.22);
-  cursor: pointer;
-  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-  min-height: 86px;
-  box-shadow: 0 10px 24px rgba(0,0,0,0.18);
-}
-
-.topic-card-left {
-  width: 44px;
-  height: 44px;
-  border-radius: 10px;
-  background: rgba(61, 214, 207, 0.12);
-  border: 1px solid rgba(61, 214, 207, 0.28);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.topic-card-left img {
-  width: 26px;
-  height: 26px;
-  object-fit: contain;
-}
-
-
-.topic-card-right {
-  display: flex;
+  align-items: left;
   flex-direction: column;
-  gap: 2px;
-  flex: 1;
-  min-width: 0;
-}
-.topic-card-right h3 {
-  font-size: 15px;
-  font-weight: 700;
-  color: #e8f0fe;
-  margin: 0;
-}
-
-.topic-card-right p:first-of-type {
-  font-size: 12px;
-  color: #7a90b0;
-  margin: 0;
-}
-
-.practice-card:hover {
-  background: #10203b;
-  border-color: #3dd6cf88;
-  transform: translateY(-2px);
-}
-
-.topic-card-right p {
-  font-size: 12px;
-  color: #7a90b0;
-  margin: 0;
-  white-space: nowrap;
+  gap: 10px;
+  min-height: 50px;
+  padding: 24px;
   overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.topic-card-right span {
-  font-size: 11px;
-  color: #6f8fb0;
-  font-weight: 700;
-}
-
-.topic-card-arrow {
-  margin-left: auto;
-  flex-shrink: 0;
-  font-size: 20px;
-  color: #4a6a8a;
-  transition: color 0.2s ease;
-}
-
-.practice-card:hover .topic-card-arrow {
-  color: #3dd6cf;
+  background: linear-gradient(90deg, rgba(3, 8, 20, 0.96), rgba(17, 37, 74, 0.72), rgba(37, 66, 120, 0.22));
+  background-size: cover;
+  background-position: center;
+  border: 1px solid #214f7f;
+  border-radius: 14px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
 }
 
 @media (max-width: 1100px){
